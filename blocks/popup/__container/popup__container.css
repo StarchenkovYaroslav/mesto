@@ -7,3 +7,13 @@
   position: relative;
   width: 430px;
 }
+
+@media (max-width: 767px) {
+  .popup__container {
+    padding-bottom: 25px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 26px;
+    width: 282px;
+  }
+}

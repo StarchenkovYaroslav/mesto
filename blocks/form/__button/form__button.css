@@ -19,3 +19,11 @@
 .form__button:hover {
   opacity: .8;
 }
+
+@media (max-width: 767px) {
+  .form__button {
+    padding-bottom: 15px;
+    font-size: 14px;
+    padding-top: 14px;
+  }
+}
