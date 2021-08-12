@@ -5,3 +5,10 @@
   object-position: center;
   width: 142px;
 }
+
+@media (max-width: 767px) {
+  .header__logo {
+    height: 24px;
+    width: 104px;
+  }
+}
