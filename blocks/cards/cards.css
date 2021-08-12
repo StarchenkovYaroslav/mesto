@@ -4,3 +4,9 @@
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   padding: 51px 0 0;
 }
+
+@media (max-width: 767px) {
+  .cards {
+    padding-top: 36px;
+  }
+}
