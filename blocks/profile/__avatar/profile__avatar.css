@@ -7,3 +7,11 @@
   object-position: center;
   width: 120px;
 }
+
+@media (max-width: 767px) {
+  .profile__avatar {
+    margin-right: 0;
+    margin-bottom: 27px;
+  }
+}
+
