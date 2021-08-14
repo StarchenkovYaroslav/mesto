@@ -17,14 +17,25 @@ profileEditButton.addEventListener('click', function() {
 });
 
 popupCloseButton.addEventListener('click', function() {
+  if (profileNameInput.placeholder !== '') profileNameInput.placeholder = '';
+  if (profileStatusInput.placeholder !== '') profileStatusInput.placeholder = '';
   popup.classList.remove('popup_opened');
 });
 
 function profileEditFormSubmitHandler (evt) {
   evt.preventDefault();
-  profileNameElement.textContent = profileNameInput.value;
-  profileStatusElement.textContent = profileStatusInput.value;
-  popup.classList.remove('popup_opened');
+  if (profileNameInput.value !== '' && profileStatusInput.value !== '') {
+    profileNameElement.textContent = profileNameInput.value;
+    profileStatusElement.textContent = profileStatusInput.value;
+    popup.classList.remove('popup_opened');
+  } else if (profileNameInput.value === '' && profileStatusInput.value === '') {
+    profileNameInput.placeholder = 'Введите имя!';
+    profileStatusInput.placeholder = 'Введите статус!';
+  } else if (profileNameInput.value === '') {
+    profileNameInput.placeholder = 'Введите имя!';
+  } else if (profileStatusInput.value === '') {
+    profileStatusInput.placeholder = 'Введите статус!';
+  }
 }
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
