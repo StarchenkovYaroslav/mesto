@@ -10,6 +10,14 @@ const profileStatusInput = profileEditForm.querySelector('.form__input_data_prof
 const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close-button');
 
+for (let elem of profileEditForm.elements) {
+  if (elem.type === "text") {
+    elem.addEventListener('focus', function() {
+      elem.selectionStart = elem.value.length;
+    });
+  }
+}
+
 profileEditButton.addEventListener('click', function() {
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
@@ -23,7 +31,7 @@ popupCloseButton.addEventListener('click', function() {
   popup.classList.remove('popup_opened');
 });
 
-function profileEditFormSubmitHandler (evt) {
+function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
   if (profileNameInput.value !== '' && profileStatusInput.value !== '') {
     profileNameElement.textContent = profileNameInput.value;
