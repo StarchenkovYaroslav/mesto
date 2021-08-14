@@ -14,6 +14,7 @@ profileEditButton.addEventListener('click', function() {
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
   popup.classList.add('popup_opened');
+  profileNameInput.focus();
 });
 
 popupCloseButton.addEventListener('click', function() {
