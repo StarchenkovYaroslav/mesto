@@ -1,9 +1,19 @@
 .profile__text {
-  max-width: 330px;
+  align-items: baseline;
+  display: grid;
+  gap: 9px 19px;
+  grid-template-areas:
+    "name edit-button"
+    "status .";
+  grid-template-columns: repeat(2, max-content);
 }
 
 @media (max-width: 767px) {
   .profile__text {
-    max-width: 100%;
+    gap: 7px 19px;
+    grid-template-areas:
+    "name"
+    "status";
+    grid-template-columns: 1fr;
   }
 }

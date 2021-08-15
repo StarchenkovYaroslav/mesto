@@ -3,11 +3,9 @@
   border: 1px solid #fff;
   box-sizing: border-box;
   cursor: pointer;
+  grid-area: edit-button;
   height: 24px;
   opacity: 1;
-  position: absolute;
-  right: -43px;
-  top: 37px;
   transition: all .2s;
   width: 24px;
 }
@@ -19,6 +17,7 @@
 @media (max-width: 767px) {
   .profile__edit-button {
     height: 18px;
+    position: absolute;
     right: -28px;
     top: 154px;
     width: 18px;
