@@ -10,7 +10,7 @@
 
 @media (max-width: 767px) {
   .profile__text {
-    gap: 7px 0;
+    row-gap: 7px;
     grid-template-areas:
     "name"
     "status";
