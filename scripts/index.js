@@ -10,10 +10,8 @@ let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__close-button');
 
 function setProfileInfo() {
-  if (profileNameInput.value !== '' && profileStatusInput.value !== '') {
-    profileNameElement.textContent = profileNameInput.value;
-    profileStatusElement.textContent = profileStatusInput.value;
-  } else throw new Error('at least one of arguments is empty');
+  profileNameElement.textContent = profileNameInput.value;
+  profileStatusElement.textContent = profileStatusInput.value;
 }
 
 function openPopup() {
@@ -24,27 +22,13 @@ function openPopup() {
 }
 
 function closePopup() {
-  if (profileNameInput.placeholder !== '') profileNameInput.placeholder = '';
-  if (profileStatusInput.placeholder !== '') profileStatusInput.placeholder = '';
   popup.classList.remove('popup_opened');
 }
 
 function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
-  try {
-    setProfileInfo();
-    closePopup();
-  } catch(err) {
-    if (profileNameInput.value === '' && profileStatusInput.value === '') {
-      profileNameInput.placeholder = 'Введите имя!';
-      profileStatusInput.placeholder = 'Введите статус!';
-    } else if (profileNameInput.value === '') {
-      profileNameInput.placeholder = 'Введите имя!';
-    } else if (profileStatusInput.value === '') {
-      profileStatusInput.placeholder = 'Введите статус!';
-    }
-  }
-
+  setProfileInfo();
+  closePopup();
 }
 
 profileEditButton.addEventListener('click', openPopup);
@@ -52,11 +36,3 @@ profileEditButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
-
-for (let elem of profileEditForm.elements) {
-  if (elem.type === "text") {
-    elem.addEventListener('focus', function() {
-      elem.selectionStart = elem.value.length;
-    });
-  }
-}
