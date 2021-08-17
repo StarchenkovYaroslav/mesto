@@ -8,6 +8,5 @@
   .profile__info {
     flex-direction: column;
     margin-bottom: 33px;
-    max-width: 75%;
   }
 }

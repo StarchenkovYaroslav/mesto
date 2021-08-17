@@ -15,5 +15,7 @@
     "name"
     "status";
     grid-template-columns: 1fr;
+    max-width: 80%;
+    padding: 0 28px;
   }
 }
