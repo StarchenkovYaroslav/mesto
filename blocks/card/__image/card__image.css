@@ -1,5 +1,7 @@
 .card__image {
   display: block;
+  height: 282px;
   margin: 0 0 25px;
+  object-fit: cover;
   width: 100%;
 }
