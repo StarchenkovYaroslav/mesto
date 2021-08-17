@@ -8,7 +8,7 @@ let profileEditForm = document.querySelector('.form_action_edit-profile-info');
 let profileNameInput = document.querySelector('.form__input_data_profile-name');
 let profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
-// getting popup elements forom DOM
+// getting popup elements from DOM
 let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__close-button');
 
