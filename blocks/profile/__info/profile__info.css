@@ -1,7 +1,6 @@
 .profile__info {
   align-items: center;
   display: flex;
-  position: relative;
 }
 
 @media (max-width: 767px) {
