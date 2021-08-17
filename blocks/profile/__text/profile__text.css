@@ -10,13 +10,13 @@
 
 @media (max-width: 767px) {
   .profile__text {
-    row-gap: 7px;
+    column-gap: 10px;
     grid-template-areas:
-    "name"
-    "status";
+      "name edit-button"
+      "status .";
     grid-template-columns: 1fr;
-    max-width: 80%;
-    padding: 0 28px;
+    padding-left: 28px;
     position: relative;
+    row-gap: 7px;
   }
 }

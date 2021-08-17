@@ -17,9 +17,6 @@
 @media (max-width: 767px) {
   .profile__edit-button {
     height: 18px;
-    position: absolute;
-    right: 0;
-    top: 8px;
     width: 18px;
   }
 }
