@@ -12,10 +12,9 @@
   .profile__text {
     column-gap: 10px;
     grid-template-areas:
-      "name edit-button"
-      "status .";
-    grid-template-columns: 1fr;
-    padding-left: 28px;
+      ". name edit-button"
+      ". status .";
+    grid-template-columns: 18px repeat(2, max-content);
     position: relative;
     row-gap: 7px;
   }
