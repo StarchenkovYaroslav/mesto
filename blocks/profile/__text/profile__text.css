@@ -15,7 +15,6 @@
       ". name edit-button"
       ". status .";
     grid-template-columns: 18px repeat(2, max-content);
-    position: relative;
     row-gap: 7px;
   }
 }
