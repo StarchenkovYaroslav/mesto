@@ -140,6 +140,19 @@
           <button class="popup__close-button" type="button"></button>
         </div>
       </div>
+      <div class="popup">
+        <div class="popup__container">
+          <form name="add-new-image" class="form form_action_add-new-image">
+            <h2 class="form__title">Новое место</h2>
+            <fieldset class="form__input-container">
+              <input type="text" name="image-title" placeholder="Название" required class="form__input form__input_data_image-title">
+              <input type="text" name="image-path" placeholder="Ссылка на картинку" required class="form__input form__input_data_image-path">
+            </fieldset>
+            <button type="submit" class="form__button form__action_add-new-image">Создать</button>
+          </form>
+          <button type="button" class="popup__close-button"></button>
+        </div>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
