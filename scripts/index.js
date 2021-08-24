@@ -1,13 +1,13 @@
 // getting profile elements from DOM
-let profileNameElement = document.querySelector('.profile__name');
-let profileStatusElement = document.querySelector('.profile__status');
-let profileEditButton = document.querySelector('.profile__edit-button');
+const profileNameElement = document.querySelector('.profile__name');
+const profileStatusElement = document.querySelector('.profile__status');
+const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
 // getting form elements from DOM
-let profileEditForm = document.querySelector('.form_action_edit-profile-info');
-let profileNameInput = document.querySelector('.form__input_data_profile-name');
-let profileStatusInput = document.querySelector('.form__input_data_profile-status');
+const profileEditForm = document.querySelector('.form_action_edit-profile-info');
+const profileNameInput = document.querySelector('.form__input_data_profile-name');
+const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
 const newImageFormElement = document.querySelector('.form_action_add-new-image');
 
