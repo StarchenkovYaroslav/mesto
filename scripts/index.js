@@ -50,15 +50,15 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(card => {
+initialCards.forEach(initialCard => {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
   const cardLikeButton = cardElement.querySelector('.card__like-button');
 
-  cardTitleElement.textContent = card.name;
-  cardImageElement.src = card.link;
-  cardImageElement.alt = card.name;
+  cardTitleElement.textContent = initialCard.name;
+  cardImageElement.src = initialCard.link;
+  cardImageElement.alt = initialCard.name;
 
   cardLikeButton.addEventListener('click', function() {
     toggleLikeButton(cardLikeButton);
