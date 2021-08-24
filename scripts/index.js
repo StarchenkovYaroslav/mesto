@@ -2,15 +2,19 @@
 let profileNameElement = document.querySelector('.profile__name');
 let profileStatusElement = document.querySelector('.profile__status');
 let profileEditButton = document.querySelector('.profile__edit-button');
+const profileAddButton = document.querySelector('.profile__add-button');
 
 // getting form elements from DOM
 let profileEditForm = document.querySelector('.form_action_edit-profile-info');
 let profileNameInput = document.querySelector('.form__input_data_profile-name');
 let profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
+const newImageFormElement = document.querySelector('.form_action_add-new-image');
+
 // getting popup elements from DOM
-let popup = document.querySelector('.popup');
-let popupCloseButton = document.querySelector('.popup__close-button');
+const popupElements = document.querySelectorAll('.popup');
+const popupEditProfileInfoElement = document.querySelector('.popup__inner-form_edit-profile_info');
+const popupAddNewImageElement = document.querySelector('.popup__inner-form_add-new-image');
 
 // initial filling cards
 const initialCards = [
@@ -54,28 +58,39 @@ initialCards.forEach(card => {
   cardsElement.insertAdjacentElement('beforeend', cardElement);
 });
 
-// defining callback functions for listeners
-function openPopup() {
+// difining common functions
+function setProfileInfoInputs() {
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
-  popup.classList.add('popup_opened');
-  profileNameInput.focus();
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
+// defining callback functions for listeners
+function togglePopup(popupElement) {
+  popupElement.classList.toggle('popup_opened');
 }
 
 function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value;
   profileStatusElement.textContent = profileStatusInput.value;
-  closePopup();
+  togglePopup(popupEditProfileInfoElement);
 }
 
 // adding listeners
-profileEditButton.addEventListener('click', openPopup);
+profileEditButton.addEventListener('click', function() {
+  setProfileInfoInputs();
+  togglePopup(popupEditProfileInfoElement);
+});
 
-popupCloseButton.addEventListener('click', closePopup);
+profileAddButton.addEventListener('click', function() {
+  togglePopup(popupAddNewImageElement);
+});
+
+popupElements.forEach(popupElement => {
+  const popupCloseButton = popupElement.querySelector('.popup__close-button');
+  popupCloseButton.addEventListener('click', function() {
+    togglePopup(popupElement);
+  })
+});
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
