@@ -64,7 +64,7 @@ initialCards.forEach(card => {
     toggleLikeButton(cardLikeButton);
   });
 
-  cardsElement.insertAdjacentElement('beforeend', cardElement);
+  cardsElement.append(cardElement);
 });
 
 
