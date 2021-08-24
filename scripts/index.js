@@ -18,6 +18,10 @@ const popupElements = document.querySelectorAll('.popup');
 const popupEditProfileInfoElement = document.querySelector('.popup__inner-form_edit-profile_info');
 const popupAddNewImageElement = document.querySelector('.popup__inner-form_add-new-image');
 
+// getting card elements from DOM
+const cardsElement = document.querySelector('.cards');
+const cardTemplate = document.querySelector('#card-template').content;
+
 // initial filling cards
 const initialCards = [
   {
@@ -46,19 +50,23 @@ const initialCards = [
   }
 ];
 
-const cardsElement = document.querySelector('.cards');
-const cardTemplate = document.querySelector('#card-template').content;
 initialCards.forEach(card => {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
+  const cardLikeButton = cardElement.querySelector('.card__like-button');
 
   cardTitleElement.textContent = card.name;
   cardImageElement.src = card.link;
   cardImageElement.alt = card.name;
 
+  cardLikeButton.addEventListener('click', function() {
+    toggleLikeButton(cardLikeButton);
+  });
+
   cardsElement.insertAdjacentElement('beforeend', cardElement);
 });
+
 
 // difining common functions
 function setProfileInfoInputs() {
@@ -69,6 +77,10 @@ function setProfileInfoInputs() {
 // defining callback functions for listeners
 function togglePopup(popupElement) {
   popupElement.classList.toggle('popup_opened');
+}
+
+function toggleLikeButton(likeButton) {
+  likeButton.classList.toggle('card__like-button_active');
 }
 
 function profileEditFormSubmitHandler(evt) {
@@ -83,10 +95,15 @@ function newImageFormSubmitHandler(evt) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
+  const cardLikeButton = cardElement.querySelector('.card__like-button');
 
   cardTitleElement.textContent = imageTitleInput.value;
   cardImageElement.src = imageLinkInput.value;
   cardImageElement.alt = imageTitleInput.value;
+
+  cardLikeButton.addEventListener('click', function() {
+    toggleLikeButton(cardLikeButton);
+  });
 
   cardsElement.prepend(cardElement);
 
