@@ -10,6 +10,8 @@ const profileNameInput = document.querySelector('.form__input_data_profile-name'
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
 const newImageFormElement = document.querySelector('.form_action_add-new-image');
+const imageTitleInput = document.querySelector('.form__input_data_image-title');
+const imageLinkInput = document.querySelector('.form__input_data_image-path');
 
 // getting popup elements from DOM
 const popupElements = document.querySelectorAll('.popup');
@@ -76,6 +78,21 @@ function profileEditFormSubmitHandler(evt) {
   togglePopup(popupEditProfileInfoElement);
 }
 
+function newImageFormSubmitHandler(evt) {
+  evt.preventDefault();
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardTitleElement = cardElement.querySelector('.card__title');
+  const cardImageElement = cardElement.querySelector('.card__image');
+
+  cardTitleElement.textContent = imageTitleInput.value;
+  cardImageElement.src = imageLinkInput.value;
+  cardImageElement.alt = imageTitleInput.value;
+
+  cardsElement.prepend(cardElement);
+
+  togglePopup(popupAddNewImageElement);
+}
+
 // adding listeners
 profileEditButton.addEventListener('click', function() {
   setProfileInfoInputs();
@@ -94,3 +111,5 @@ popupElements.forEach(popupElement => {
 });
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
+
+newImageFormElement.addEventListener('submit', newImageFormSubmitHandler);
