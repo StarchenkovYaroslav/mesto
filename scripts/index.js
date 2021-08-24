@@ -12,6 +12,48 @@ let profileStatusInput = document.querySelector('.form__input_data_profile-statu
 let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__close-button');
 
+// initial filling cards
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const cardsElement = document.querySelector('.cards');
+const cardTemplate = document.querySelector('#card-template').content;
+initialCards.forEach(card => {
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardTitleElement = cardElement.querySelector('.card__title');
+  const cardImageElement = cardElement.querySelector('.card__image');
+
+  cardTitleElement.textContent = card.name;
+  cardImageElement.src = card.link;
+  cardImageElement.alt = card.name;
+
+  cardsElement.insertAdjacentElement('beforeend', cardElement);
+});
+
 // defining callback functions for listeners
 function openPopup() {
   profileNameInput.value = profileNameElement.textContent;
