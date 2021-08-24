@@ -55,6 +55,7 @@ initialCards.forEach(initialCard => {
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
   const cardLikeButton = cardElement.querySelector('.card__like-button');
+  const cardDeleteButton = cardElement.querySelector('.card__delete-button');
 
   cardTitleElement.textContent = initialCard.name;
   cardImageElement.src = initialCard.link;
@@ -63,6 +64,10 @@ initialCards.forEach(initialCard => {
   cardLikeButton.addEventListener('click', function() {
     toggleLikeButton(cardLikeButton);
   });
+
+  cardDeleteButton.addEventListener('click', function() {
+    cardElement.remove();
+  })
 
   cardsElement.append(cardElement);
 });
@@ -96,6 +101,7 @@ function newImageFormSubmitHandler(evt) {
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
   const cardLikeButton = cardElement.querySelector('.card__like-button');
+  const cardDeleteButton = cardElement.querySelector('.card__delete-button');
 
   cardTitleElement.textContent = imageTitleInput.value;
   cardImageElement.src = imageLinkInput.value;
@@ -103,6 +109,10 @@ function newImageFormSubmitHandler(evt) {
 
   cardLikeButton.addEventListener('click', function() {
     toggleLikeButton(cardLikeButton);
+  });
+
+  cardDeleteButton.addEventListener('click', function() {
+    cardElement.remove();
   });
 
   cardsElement.prepend(cardElement);
