@@ -41,8 +41,8 @@ const cardTitleInput = document.querySelector('.form__input_data_card-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
-const profileEditPopup = document.querySelector('.popup__inner-form_edit-profile-info');
-const newCardPopup = document.querySelector('.popup__inner-form_add-new-card');
+const profileEditPopup = document.querySelector('.popup_inner-form_edit-profile-info');
+const newCardPopup = document.querySelector('.popup_inner-form_add-new-card');
 const picturePopup = document.querySelector('.popup_content_picture');
 
 const cardsElement = document.querySelector('.cards');
