@@ -1,3 +1,31 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
 // getting profile elements from DOM
 const profileNameElement = document.querySelector('.profile__name');
 const profileStatusElement = document.querySelector('.profile__status');
@@ -28,7 +56,7 @@ const pictureImageElement = document.querySelector('.picture__image');
 const pictureDescriptionElement = document.querySelector('.picture__description');
 
 
-// difining common functions
+// difining functions
 function setProfileInfoInputs() {
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
@@ -38,6 +66,18 @@ function setPictureElements(imageURL, description) {
   pictureImageElement.src = imageURL;
   pictureImageElement.alt = description;
   pictureDescriptionElement.textContent = description;
+}
+
+function togglePopup(popupElement) {
+  popupElement.classList.toggle('popup_opened');
+}
+
+function toggleLikeButton(likeButton) {
+  likeButton.classList.toggle('card__like-button_active');
+}
+
+function deleteCardElement(cardElement) {
+  cardElement.remove();
 }
 
 function createCardElement(imageURL, title) {
@@ -67,55 +107,6 @@ function createCardElement(imageURL, title) {
   return cardElement;
 }
 
-
-// initial filling cards
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-initialCards.forEach(initialCard => {
-  const cardElement = createCardElement(initialCard.link, initialCard.name);
-  cardsElement.append(cardElement);
-});
-
-
-
-// defining callback functions for listeners
-function togglePopup(popupElement) {
-  popupElement.classList.toggle('popup_opened');
-}
-
-function toggleLikeButton(likeButton) {
-  likeButton.classList.toggle('card__like-button_active');
-}
-
-function deleteCardElement(cardElement) {
-  cardElement.remove();
-}
-
 function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value;
@@ -129,6 +120,7 @@ function newImageFormSubmitHandler(evt) {
   cardsElement.prepend(cardElement);
   togglePopup(popupAddNewImageElement);
 }
+
 
 // adding listeners
 profileEditButton.addEventListener('click', function() {
@@ -149,3 +141,10 @@ popupCloseButtonElements.forEach(popupCloseButtonElement => {
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
 
 newImageFormElement.addEventListener('submit', newImageFormSubmitHandler);
+
+
+// initial filling cards
+initialCards.forEach(initialCard => {
+  const cardElement = createCardElement(initialCard.link, initialCard.name);
+  cardsElement.append(cardElement);
+});
