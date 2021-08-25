@@ -39,7 +39,7 @@ const profileStatusInput = document.querySelector('.form__input_data_profile-sta
 
 const newImageForm = document.querySelector('.form_action_add-new-image');
 const imageTitleInput = document.querySelector('.form__input_data_image-title');
-const imageUrlInput = document.querySelector('.form__input_data_image-path');
+const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
 // getting popup elements from DOM
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
