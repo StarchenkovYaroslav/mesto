@@ -37,14 +37,14 @@ const profileEditForm = document.querySelector('.form_action_edit-profile-info')
 const profileNameInput = document.querySelector('.form__input_data_profile-name');
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
-const newImageForm = document.querySelector('.form_action_add-new-image');
+const newImageForm = document.querySelector('.form_action_add-new-card');
 const imageTitleInput = document.querySelector('.form__input_data_image-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
 // getting popup elements from DOM
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const popupEditProfileInfo = document.querySelector('.popup__inner-form_edit-profile-info');
-const popupAddNewImage = document.querySelector('.popup__inner-form_add-new-image');
+const popupAddNewImage = document.querySelector('.popup__inner-form_add-new-card');
 const popupPicture = document.querySelector('.popup_content_picture');
 
 // getting card elements from DOM
