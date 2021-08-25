@@ -38,7 +38,7 @@ const profileNameInput = document.querySelector('.form__input_data_profile-name'
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
 const newImageForm = document.querySelector('.form_action_add-new-card');
-const imageTitleInput = document.querySelector('.form__input_data_image-title');
+const imageTitleInput = document.querySelector('.form__input_data_card-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
 // getting popup elements from DOM
