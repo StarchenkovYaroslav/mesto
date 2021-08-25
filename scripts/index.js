@@ -42,10 +42,10 @@ const imageTitleInput = document.querySelector('.form__input_data_image-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-path');
 
 // getting popup elements from DOM
-const popupCloseButtonElements = document.querySelectorAll('.popup__close-button');
-const popupEditProfileInfoElement = document.querySelector('.popup__inner-form_edit-profile_info');
-const popupAddNewImageElement = document.querySelector('.popup__inner-form_add-new-image');
-const popupPictureElement = document.querySelector('.popup_content_picture');
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+const popupEditProfileInfo = document.querySelector('.popup__inner-form_edit-profile_info');
+const popupAddNewImage = document.querySelector('.popup__inner-form_add-new-image');
+const popupPicture = document.querySelector('.popup_content_picture');
 
 // getting card elements from DOM
 const cardsElement = document.querySelector('.cards');
@@ -89,7 +89,7 @@ function createCardElement(title, imageUrl) {
 
   cardImageElement.addEventListener('click', function() {
     setPictureElements(imageUrl, title);
-    togglePopup(popupPictureElement);
+    togglePopup(popupPicture);
   });
 
   cardLikeButton.addEventListener('click', function() {
@@ -107,28 +107,28 @@ function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value;
   profileStatusElement.textContent = profileStatusInput.value;
-  togglePopup(popupEditProfileInfoElement);
+  togglePopup(popupEditProfileInfo);
 }
 
 function newImageFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardElement = createCardElement(imageTitleInput.value, imageUrlInput.value);
   cardsElement.prepend(cardElement);
-  togglePopup(popupAddNewImageElement);
+  togglePopup(popupAddNewImage);
 }
 
 
 // adding listeners
 profileEditButton.addEventListener('click', function() {
   setProfileInfoInputs();
-  togglePopup(popupEditProfileInfoElement);
+  togglePopup(popupEditProfileInfo);
 });
 
 profileAddButton.addEventListener('click', function() {
-  togglePopup(popupAddNewImageElement);
+  togglePopup(popupAddNewImage);
 });
 
-popupCloseButtonElements.forEach(popupCloseButtonElement => {
+popupCloseButtons.forEach(popupCloseButtonElement => {
   popupCloseButtonElement.addEventListener('click', function() {
     togglePopup(popupCloseButtonElement.closest('.popup'));
   });
