@@ -76,10 +76,6 @@ function toggleLikeButton(likeButton) {
   likeButton.classList.toggle('card__like-button_active');
 }
 
-function deleteCardElement(cardElement) {
-  cardElement.remove();
-}
-
 function createCardElement(title, imageUrl) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
@@ -101,7 +97,7 @@ function createCardElement(title, imageUrl) {
   });
 
   cardDeleteButton.addEventListener('click', function() {
-    deleteCardElement(cardElement);
+    cardElement.remove();
   })
 
   return cardElement;
