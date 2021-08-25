@@ -14,7 +14,7 @@ const imageTitleInput = document.querySelector('.form__input_data_image-title');
 const imageLinkInput = document.querySelector('.form__input_data_image-path');
 
 // getting popup elements from DOM
-const popupElements = document.querySelectorAll('.popup');
+const popupCloseButtonElements = document.querySelectorAll('.popup__close-button');
 const popupEditProfileInfoElement = document.querySelector('.popup__inner-form_edit-profile_info');
 const popupAddNewImageElement = document.querySelector('.popup__inner-form_add-new-image');
 const popupPictureElement = document.querySelector('.popup_content_picture');
@@ -151,11 +151,10 @@ profileAddButton.addEventListener('click', function() {
   togglePopup(popupAddNewImageElement);
 });
 
-popupElements.forEach(popupElement => {
-  const popupCloseButton = popupElement.querySelector('.popup__close-button');
-  popupCloseButton.addEventListener('click', function() {
-    togglePopup(popupElement);
-  })
+popupCloseButtonElements.forEach(popupCloseButtonElement => {
+  popupCloseButtonElement.addEventListener('click', function() {
+    togglePopup(popupCloseButtonElement.closest('.popup'));
+  });
 });
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
