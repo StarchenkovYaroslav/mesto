@@ -38,7 +38,7 @@ const profileNameInput = document.querySelector('.form__input_data_profile-name'
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
 const newCardForm = document.querySelector('.form_action_add-new-card');
-const imageTitleInput = document.querySelector('.form__input_data_card-title');
+const cardTitleInput = document.querySelector('.form__input_data_card-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
 // getting popup elements from DOM
@@ -112,7 +112,7 @@ function profileEditFormSubmitHandler(evt) {
 
 function newImageFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardElement = createCardElement(imageTitleInput.value, imageUrlInput.value);
+  const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value);
   cardsElement.prepend(cardElement);
   togglePopup(popupAddNewImage);
 }
