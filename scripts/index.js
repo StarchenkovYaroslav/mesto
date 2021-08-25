@@ -80,7 +80,7 @@ function deleteCardElement(cardElement) {
   cardElement.remove();
 }
 
-function createCardElement(imageUrl, title) {
+function createCardElement(title, imageUrl) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
@@ -116,7 +116,7 @@ function profileEditFormSubmitHandler(evt) {
 
 function newImageFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardElement = createCardElement(imageUrlInput.value, imageTitleInput.value);
+  const cardElement = createCardElement(imageTitleInput.value, imageUrlInput.value);
   cardsElement.prepend(cardElement);
   togglePopup(popupAddNewImageElement);
 }
@@ -145,6 +145,6 @@ newImageFormElement.addEventListener('submit', newImageFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  const cardElement = createCardElement(initialCard.imageUrl, initialCard.title);
+  const cardElement = createCardElement(initialCard.title, initialCard.imageUrl);
   cardsElement.append(cardElement);
 });
