@@ -17,10 +17,15 @@ const imageLinkInput = document.querySelector('.form__input_data_image-path');
 const popupElements = document.querySelectorAll('.popup');
 const popupEditProfileInfoElement = document.querySelector('.popup__inner-form_edit-profile_info');
 const popupAddNewImageElement = document.querySelector('.popup__inner-form_add-new-image');
+const popupPictureElement = document.querySelector('.popup_content_picture');
 
 // getting card elements from DOM
 const cardsElement = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#card-template').content;
+
+// getting picture elements from DOM
+const pictureImageElement = document.querySelector('.picture__image');
+const pictureDescriptionElement = document.querySelector('.picture__description');
 
 // initial filling cards
 const initialCards = [
@@ -61,6 +66,11 @@ initialCards.forEach(initialCard => {
   cardImageElement.src = initialCard.link;
   cardImageElement.alt = initialCard.name;
 
+  cardImageElement.addEventListener('click', function() {
+    setPictureElements(cardImageElement.src, cardTitleElement.textContent);
+    togglePopup(popupPictureElement);
+  });
+
   cardLikeButton.addEventListener('click', function() {
     toggleLikeButton(cardLikeButton);
   });
@@ -77,6 +87,12 @@ initialCards.forEach(initialCard => {
 function setProfileInfoInputs() {
   profileNameInput.value = profileNameElement.textContent;
   profileStatusInput.value = profileStatusElement.textContent;
+}
+
+function setPictureElements(imageURL, description) {
+  pictureImageElement.src = imageURL;
+  pictureImageElement.alt = description;
+  pictureDescriptionElement.textContent = description;
 }
 
 // defining callback functions for listeners
@@ -106,6 +122,11 @@ function newImageFormSubmitHandler(evt) {
   cardTitleElement.textContent = imageTitleInput.value;
   cardImageElement.src = imageLinkInput.value;
   cardImageElement.alt = imageTitleInput.value;
+
+  cardImageElement.addEventListener('click', function() {
+    setPictureElements(cardImageElement.src, cardTitleElement.textContent);
+    togglePopup(popupPictureElement);
+  });
 
   cardLikeButton.addEventListener('click', function() {
     toggleLikeButton(cardLikeButton);
