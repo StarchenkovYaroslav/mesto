@@ -106,7 +106,7 @@ function profileEditFormSubmitHandler(evt) {
   togglePopup(profileEditPopup);
 }
 
-function newImageFormSubmitHandler(evt) {
+function newCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value);
   cardsElement.prepend(cardElement);
@@ -132,7 +132,7 @@ popupCloseButtons.forEach(popupCloseButtonElement => {
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
 
-newCardForm.addEventListener('submit', newImageFormSubmitHandler);
+newCardForm.addEventListener('submit', newCardFormSubmitHandler);
 
 
 // initial filling cards
