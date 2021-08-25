@@ -26,13 +26,12 @@ const initialCards = [
 ];
 
 
-// getting profile elements from DOM
+// getting elements from DOM
 const profileNameElement = document.querySelector('.profile__name');
 const profileStatusElement = document.querySelector('.profile__status');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
-// getting form elements from DOM
 const profileEditForm = document.querySelector('.form_action_edit-profile-info');
 const profileNameInput = document.querySelector('.form__input_data_profile-name');
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
@@ -41,17 +40,14 @@ const newCardForm = document.querySelector('.form_action_add-new-card');
 const cardTitleInput = document.querySelector('.form__input_data_card-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
-// getting popup elements from DOM
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const profileEditPopup = document.querySelector('.popup__inner-form_edit-profile-info');
 const newCardPopup = document.querySelector('.popup__inner-form_add-new-card');
 const picturePopup = document.querySelector('.popup_content_picture');
 
-// getting card elements from DOM
 const cardsElement = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#card-template').content;
 
-// getting picture elements from DOM
 const pictureImageElement = document.querySelector('.picture__image');
 const pictureDescriptionElement = document.querySelector('.picture__description');
 
