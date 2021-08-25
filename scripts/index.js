@@ -1,27 +1,27 @@
 const initialCards = [
   {
     title: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    imageUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
     title: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    imageUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
     title: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    imageUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
     title: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    imageUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
     title: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    imageUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
     title: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    imageUrl: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
 
@@ -39,7 +39,7 @@ const profileStatusInput = document.querySelector('.form__input_data_profile-sta
 
 const newImageFormElement = document.querySelector('.form_action_add-new-image');
 const imageTitleInput = document.querySelector('.form__input_data_image-title');
-const imageLinkInput = document.querySelector('.form__input_data_image-path');
+const imageUrlInput = document.querySelector('.form__input_data_image-path');
 
 // getting popup elements from DOM
 const popupCloseButtonElements = document.querySelectorAll('.popup__close-button');
@@ -62,8 +62,8 @@ function setProfileInfoInputs() {
   profileStatusInput.value = profileStatusElement.textContent;
 }
 
-function setPictureElements(imageURL, description) {
-  pictureImageElement.src = imageURL;
+function setPictureElements(imageUrl, description) {
+  pictureImageElement.src = imageUrl;
   pictureImageElement.alt = description;
   pictureDescriptionElement.textContent = description;
 }
@@ -80,7 +80,7 @@ function deleteCardElement(cardElement) {
   cardElement.remove();
 }
 
-function createCardElement(imageURL, title) {
+function createCardElement(imageUrl, title) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
@@ -88,11 +88,11 @@ function createCardElement(imageURL, title) {
   const cardDeleteButton = cardElement.querySelector('.card__delete-button');
 
   cardTitleElement.textContent = title;
-  cardImageElement.src = imageURL;
+  cardImageElement.src = imageUrl;
   cardImageElement.alt = title;
 
   cardImageElement.addEventListener('click', function() {
-    setPictureElements(imageURL, title);
+    setPictureElements(imageUrl, title);
     togglePopup(popupPictureElement);
   });
 
@@ -116,7 +116,7 @@ function profileEditFormSubmitHandler(evt) {
 
 function newImageFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardElement = createCardElement(imageLinkInput.value, imageTitleInput.value);
+  const cardElement = createCardElement(imageUrlInput.value, imageTitleInput.value);
   cardsElement.prepend(cardElement);
   togglePopup(popupAddNewImageElement);
 }
@@ -145,6 +145,6 @@ newImageFormElement.addEventListener('submit', newImageFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  const cardElement = createCardElement(initialCard.link, initialCard.title);
+  const cardElement = createCardElement(initialCard.imageUrl, initialCard.title);
   cardsElement.append(cardElement);
 });
