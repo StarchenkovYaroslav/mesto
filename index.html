@@ -38,9 +38,7 @@
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
-        <section class="cards" aria-label="Фотографии профиля">
-
-        </section>
+        <section class="cards" aria-label="Фотографии профиля"></section>
       </main>
       <footer class="footer section">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -69,7 +67,10 @@
                 class="form__input form__input_data_profile-status"
               >
             </fieldset>
-            <button class="form__button form__button_action_save-profile-info" type="submit">
+            <button
+              class="form__button form__button_action_save-profile-info"
+              type="submit"
+            >
               Сохранить
             </button>
           </form>
@@ -82,10 +83,27 @@
           <form name="add-new-card" class="form form_action_add-new-card">
             <h2 class="form__title">Новое место</h2>
             <fieldset class="form__input-container">
-              <input type="text" name="card-title" placeholder="Название" required class="form__input form__input_data_card-title">
-              <input type="text" name="image-url" placeholder="Ссылка на картинку" required class="form__input form__input_data_image-url">
+              <input
+                type="text"
+                name="card-title"
+                placeholder="Название"
+                required
+                class="form__input form__input_data_card-title"
+              >
+              <input
+                type="text"
+                name="image-url"
+                placeholder="Ссылка на картинку"
+                required
+                class="form__input form__input_data_image-url"
+              >
             </fieldset>
-            <button type="submit" class="form__button form__action_add-new-image">Создать</button>
+            <button
+              type="submit"
+              class="form__button form__action_add-new-image"
+            >
+              Создать
+            </button>
           </form>
           <button type="button" class="popup__close-button"></button>
         </div>
