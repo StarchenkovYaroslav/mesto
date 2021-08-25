@@ -37,7 +37,7 @@ const profileEditForm = document.querySelector('.form_action_edit-profile-info')
 const profileNameInput = document.querySelector('.form__input_data_profile-name');
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
-const newImageForm = document.querySelector('.form_action_add-new-card');
+const newCardForm = document.querySelector('.form_action_add-new-card');
 const imageTitleInput = document.querySelector('.form__input_data_card-title');
 const imageUrlInput = document.querySelector('.form__input_data_image-url');
 
@@ -136,7 +136,7 @@ popupCloseButtons.forEach(popupCloseButtonElement => {
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
 
-newImageForm.addEventListener('submit', newImageFormSubmitHandler);
+newCardForm.addEventListener('submit', newImageFormSubmitHandler);
 
 
 // initial filling cards
