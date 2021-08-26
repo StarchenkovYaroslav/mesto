@@ -114,6 +114,7 @@ function newCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value);
   cardsElement.prepend(cardElement);
+  newCardForm.reset();
   closePopup(newCardPopup);
 }
 
