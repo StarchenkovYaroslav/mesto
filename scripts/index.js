@@ -64,8 +64,12 @@ function setPictureElements(imageUrl, description) {
   pictureDescriptionElement.textContent = description;
 }
 
-function togglePopup(popupElement) {
-  popupElement.classList.toggle('popup_opened');
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_opened');
+}
+
+function closePopup(popupElement) {
+  popupElement.classList.remove('popup_opened');
 }
 
 function handleLikeButtonClick(likeButton) {
@@ -85,7 +89,7 @@ function createCardElement(title, imageUrl) {
 
   cardImageElement.addEventListener('click', function() {
     setPictureElements(imageUrl, title);
-    togglePopup(picturePopup);
+    openPopup(picturePopup);
   });
 
   cardLikeButton.addEventListener('click', function() {
@@ -103,30 +107,30 @@ function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value;
   profileStatusElement.textContent = profileStatusInput.value;
-  togglePopup(profileEditPopup);
+  closePopup(profileEditPopup);
 }
 
 function newCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value);
   cardsElement.prepend(cardElement);
-  togglePopup(newCardPopup);
+  closePopup(newCardPopup);
 }
 
 
 // adding listeners
 profileEditButton.addEventListener('click', function() {
   setProfileInfoInputs();
-  togglePopup(profileEditPopup);
+  openPopup(profileEditPopup);
 });
 
 profileAddButton.addEventListener('click', function() {
-  togglePopup(newCardPopup);
+  openPopup(newCardPopup);
 });
 
 popupCloseButtons.forEach(popupCloseButtonElement => {
   popupCloseButtonElement.addEventListener('click', function() {
-    togglePopup(popupCloseButtonElement.closest('.popup'));
+    closePopup(popupCloseButtonElement.closest('.popup'));
   });
 });
 
