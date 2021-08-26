@@ -68,7 +68,7 @@ function togglePopup(popupElement) {
   popupElement.classList.toggle('popup_opened');
 }
 
-function toggleLikeButton(likeButton) {
+function handleLikeButtonClick(likeButton) {
   likeButton.classList.toggle('card__like-button_active');
 }
 
@@ -89,7 +89,7 @@ function createCardElement(title, imageUrl) {
   });
 
   cardLikeButton.addEventListener('click', function() {
-    toggleLikeButton(cardLikeButton);
+    handleLikeButtonClick(cardLikeButton);
   });
 
   cardDeleteButton.addEventListener('click', function() {
