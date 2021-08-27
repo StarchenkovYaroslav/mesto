@@ -58,7 +58,7 @@ function setProfileInfoInputs() {
   profileStatusInput.value = profileStatusElement.textContent;
 }
 
-function setPictureElements(imageUrl, description) {
+function setPictureElements(imageUrl, description) { // TODO: object parameter
   pictureImageElement.src = imageUrl;
   pictureImageElement.alt = description;
   pictureDescriptionElement.textContent = description;
@@ -76,7 +76,7 @@ function handleLikeButtonClick(likeButton) {
   likeButton.classList.toggle('card__like-button_active');
 }
 
-function createCardElement(title, imageUrl) {
+function createCardElement(title, imageUrl) { // TODO: object parameter
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
@@ -88,16 +88,16 @@ function createCardElement(title, imageUrl) {
   cardImageElement.alt = title;
 
   cardImageElement.addEventListener('click', function() {
-    setPictureElements(imageUrl, title);
+    setPictureElements(imageUrl, title); // TODO: object parameter
     openPopup(picturePopup);
   });
 
   cardLikeButton.addEventListener('click', function() {
-    handleLikeButtonClick(cardLikeButton);
+    handleLikeButtonClick(cardLikeButton); // TODO: event.target
   });
 
   cardDeleteButton.addEventListener('click', function() {
-    cardElement.remove();
+    cardElement.remove(); // TODO: event.target
   })
 
   return cardElement;
@@ -112,7 +112,7 @@ function profileEditFormSubmitHandler(evt) {
 
 function newCardFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value);
+  const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value); // TODO: object parameter
   cardsElement.prepend(cardElement);
   newCardForm.reset();
   closePopup(newCardPopup);
@@ -131,7 +131,7 @@ profileAddButton.addEventListener('click', function() {
 
 popupCloseButtons.forEach(popupCloseButtonElement => {
   popupCloseButtonElement.addEventListener('click', function() {
-    closePopup(popupCloseButtonElement.closest('.popup'));
+    closePopup(popupCloseButtonElement.closest('.popup')); // TODO: event.target
   });
 });
 
@@ -142,6 +142,6 @@ newCardForm.addEventListener('submit', newCardFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  const cardElement = createCardElement(initialCard.title, initialCard.imageUrl);
+  const cardElement = createCardElement(initialCard.title, initialCard.imageUrl); // TODO: object parameter
   cardsElement.append(cardElement);
 });
