@@ -72,7 +72,7 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-function handleLikeButtonClick(evt) {
+function cardLikeButtonClickHandler(evt) {
   evt.target.classList.toggle('card__like-button_active');
 }
 
@@ -95,7 +95,7 @@ function createCardElement(card) {
     openPopup(picturePopup);
   });
 
-  cardLikeButton.addEventListener('click', handleLikeButtonClick)
+  cardLikeButton.addEventListener('click', cardLikeButtonClickHandler)
 
   cardDeleteButton.addEventListener('click', function(evt) {
     evt.target.closest('.card').remove();
