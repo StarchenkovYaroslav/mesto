@@ -72,8 +72,33 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
+function profileEditButtonClickHandler() {
+  setProfileInfoInputs();
+  openPopup(profileEditPopup);
+}
+
+function profileAddButtonClickHandler() {
+  openPopup(newCardPopup);
+}
+
+function popupCloseButtonClickHandler() {
+  closePopup( evt.target.closest('.popup') );
+}
+
+function cardImageClickHandler(evt) {
+  setPictureElements({
+    title: evt.target.closest('.card').querySelector('.card__title').textContent,
+    imageUrl: evt.target.src
+  });
+  openPopup(picturePopup);
+}
+
 function cardLikeButtonClickHandler(evt) {
   evt.target.classList.toggle('card__like-button_active');
+}
+
+function cardDeleteButtonClickHandler(evt) {
+  evt.target.closest('.card').remove();
 }
 
 function createCardElement(card) {
@@ -87,19 +112,9 @@ function createCardElement(card) {
   cardImageElement.src = card.imageUrl;
   cardImageElement.alt = card.title;
 
-  cardImageElement.addEventListener('click', function(evt) {
-    setPictureElements({
-      title: evt.target.closest('.card').querySelector('.card__title').textContent,
-      imageUrl: evt.target.src
-    });
-    openPopup(picturePopup);
-  });
-
-  cardLikeButton.addEventListener('click', cardLikeButtonClickHandler)
-
-  cardDeleteButton.addEventListener('click', function(evt) {
-    evt.target.closest('.card').remove();
-  })
+  cardImageElement.addEventListener('click', cardImageClickHandler);
+  cardLikeButton.addEventListener('click', cardLikeButtonClickHandler);
+  cardDeleteButton.addEventListener('click', cardDeleteButtonClickHandler);
 
   return cardElement;
 }
@@ -124,19 +139,12 @@ function newCardFormSubmitHandler(evt) {
 
 
 // adding listeners
-profileEditButton.addEventListener('click', function() {
-  setProfileInfoInputs();
-  openPopup(profileEditPopup);
-});
+profileEditButton.addEventListener('click', profileEditButtonClickHandler);
 
-profileAddButton.addEventListener('click', function() {
-  openPopup(newCardPopup);
-});
+profileAddButton.addEventListener('click', profileAddButtonClickHandler);
 
-popupCloseButtons.forEach(popupCloseButtonElement => {
-  popupCloseButtonElement.addEventListener('click', function(evt) {
-    closePopup(evt.target.closest('.popup'));
-  });
+popupCloseButtons.forEach(popupCloseButton => {
+  popupCloseButton.addEventListener('click', popupCloseButtonClickHandler);
 });
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
