@@ -72,8 +72,8 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-function handleLikeButtonClick(likeButton) {
-  likeButton.classList.toggle('card__like-button_active');
+function handleLikeButtonClick(evt) {
+  evt.target.classList.toggle('card__like-button_active');
 }
 
 function createCardElement(card) {
@@ -87,17 +87,18 @@ function createCardElement(card) {
   cardImageElement.src = card.imageUrl;
   cardImageElement.alt = card.title;
 
-  cardImageElement.addEventListener('click', function() {
-    setPictureElements(card);
+  cardImageElement.addEventListener('click', function(evt) {
+    setPictureElements({
+      title: evt.target.closest('.card').querySelector('.card__title').textContent,
+      imageUrl: evt.target.src
+    });
     openPopup(picturePopup);
   });
 
-  cardLikeButton.addEventListener('click', function() {
-    handleLikeButtonClick(cardLikeButton); // TODO: event.target
-  });
+  cardLikeButton.addEventListener('click', handleLikeButtonClick)
 
-  cardDeleteButton.addEventListener('click', function() {
-    cardElement.remove(); // TODO: event.target
+  cardDeleteButton.addEventListener('click', function(evt) {
+    evt.target.closest('.card').remove();
   })
 
   return cardElement;
@@ -133,8 +134,8 @@ profileAddButton.addEventListener('click', function() {
 });
 
 popupCloseButtons.forEach(popupCloseButtonElement => {
-  popupCloseButtonElement.addEventListener('click', function() {
-    closePopup(popupCloseButtonElement.closest('.popup')); // TODO: event.target
+  popupCloseButtonElement.addEventListener('click', function(evt) {
+    closePopup(evt.target.closest('.popup'));
   });
 });
 
