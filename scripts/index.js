@@ -58,10 +58,10 @@ function setProfileInfoInputs() {
   profileStatusInput.value = profileStatusElement.textContent;
 }
 
-function setPictureElements(imageUrl, description) { // TODO: object parameter
-  pictureImageElement.src = imageUrl;
-  pictureImageElement.alt = description;
-  pictureDescriptionElement.textContent = description;
+function setPictureElements(card) {
+  pictureImageElement.src = card.imageUrl;
+  pictureImageElement.alt = card.title;
+  pictureDescriptionElement.textContent = card.title;
 }
 
 function openPopup(popupElement) {
@@ -76,19 +76,19 @@ function handleLikeButtonClick(likeButton) {
   likeButton.classList.toggle('card__like-button_active');
 }
 
-function createCardElement(title, imageUrl) { // TODO: object parameter
+function createCardElement(card) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitleElement = cardElement.querySelector('.card__title');
   const cardImageElement = cardElement.querySelector('.card__image');
   const cardLikeButton = cardElement.querySelector('.card__like-button');
   const cardDeleteButton = cardElement.querySelector('.card__delete-button');
 
-  cardTitleElement.textContent = title;
-  cardImageElement.src = imageUrl;
-  cardImageElement.alt = title;
+  cardTitleElement.textContent = card.title;
+  cardImageElement.src = card.imageUrl;
+  cardImageElement.alt = card.title;
 
   cardImageElement.addEventListener('click', function() {
-    setPictureElements(imageUrl, title); // TODO: object parameter
+    setPictureElements(card);
     openPopup(picturePopup);
   });
 
@@ -112,7 +112,10 @@ function profileEditFormSubmitHandler(evt) {
 
 function newCardFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardElement = createCardElement(cardTitleInput.value, imageUrlInput.value); // TODO: object parameter
+  const cardElement = createCardElement({
+    title: cardTitleInput.value,
+    imageUrl: imageUrlInput.value
+  });
   cardsElement.prepend(cardElement);
   newCardForm.reset();
   closePopup(newCardPopup);
@@ -142,6 +145,6 @@ newCardForm.addEventListener('submit', newCardFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  const cardElement = createCardElement(initialCard.title, initialCard.imageUrl); // TODO: object parameter
+  const cardElement = createCardElement(initialCard);
   cardsElement.append(cardElement);
 });
