@@ -81,7 +81,7 @@ function profileAddButtonClickHandler() {
   openPopup(newCardPopup);
 }
 
-function popupCloseButtonClickHandler() {
+function popupCloseButtonClickHandler(evt) {
   closePopup( evt.target.closest('.popup') );
 }
 
