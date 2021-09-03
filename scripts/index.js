@@ -30,19 +30,19 @@ const initialCards = [
 const profileNameElement = document.querySelector('.profile__name');
 const profileStatusElement = document.querySelector('.profile__status');
 const editProfileButton = document.querySelector('.profile__edit-button');
-const addCardButton = document.querySelector('.profile__add-button');
+const addCardButton = document.querySelector('.profile__add-card-button');
 
-const editProfileForm = document.querySelector('.form_action_edit-profile-info');
+const editProfileForm = document.querySelector('.form_action_edit-profile');
 const profileNameInput = document.querySelector('.form__input_data_profile-name');
 const profileStatusInput = document.querySelector('.form__input_data_profile-status');
 
-const addCardForm = document.querySelector('.form_action_add-new-card');
+const addCardForm = document.querySelector('.form_action_add-card');
 const cardTitleInput = document.querySelector('.form__input_data_card-title');
-const imageUrlInput = document.querySelector('.form__input_data_image-url');
+const imageUrlInput = document.querySelector('.form__input_data_card-image-url');
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
-const editProfilePopup = document.querySelector('.popup_content_edit-profile-info-form');
-const addCardPopup = document.querySelector('.popup_content_add-new-card-form');
+const editProfilePopup = document.querySelector('.popup_content_edit-profile-form');
+const addCardPopup = document.querySelector('.popup_content_add-card-form');
 const picturePopup = document.querySelector('.popup_content_picture');
 
 const cardsElement = document.querySelector('.cards');
