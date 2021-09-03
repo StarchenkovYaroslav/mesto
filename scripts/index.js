@@ -58,6 +58,11 @@ function setProfileInfoInputs(profile) {
   profileStatusInput.value = profile.status;
 }
 
+function setProfileInfoElements(profile) {
+  profileNameElement.textContent = profile.name;
+  profileStatusElement.textContent = profile.status;
+}
+
 function setPictureElements(card) {
   pictureImageElement.src = card.imageUrl;
   pictureImageElement.alt = card.title;
@@ -127,8 +132,10 @@ function createCardElement(card) {
 function editProfileFormSubmitHandler(evt) {
   evt.preventDefault();
 
-  profileNameElement.textContent = profileNameInput.value;
-  profileStatusElement.textContent = profileStatusInput.value;
+  setProfileInfoElements({
+    name: profileNameInput.value,
+    status: profileStatusInput.value
+  });
 
   closePopup(editProfilePopup);
 }
