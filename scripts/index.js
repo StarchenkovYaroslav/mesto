@@ -38,7 +38,7 @@ const profileStatusInput = document.querySelector('.form__input_data_profile-sta
 
 const addCardForm = document.querySelector('.form_action_add-card');
 const cardTitleInput = document.querySelector('.form__input_data_card-title');
-const imageUrlInput = document.querySelector('.form__input_data_card-image-url');
+const cardImageUrlInput = document.querySelector('.form__input_data_card-image-url');
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile-form');
@@ -145,7 +145,7 @@ function addCardFormSubmitHandler(evt) {
 
   const cardElement = createCardElement({
     title: cardTitleInput.value,
-    imageUrl: imageUrlInput.value
+    imageUrl: cardImageUrlInput.value
   });
   cardsElement.prepend(cardElement);
 
