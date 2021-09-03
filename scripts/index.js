@@ -53,9 +53,9 @@ const pictureDescriptionElement = document.querySelector('.picture__description'
 
 
 // difining functions
-function setProfileInfoInputs() {
-  profileNameInput.value = profileNameElement.textContent;
-  profileStatusInput.value = profileStatusElement.textContent;
+function setProfileInfoInputs(profile) {
+  profileNameInput.value = profile.name;
+  profileStatusInput.value = profile.status;
 }
 
 function setPictureElements(card) {
@@ -73,7 +73,10 @@ function closePopup(popupElement) {
 }
 
 function profileEditButtonClickHandler() {
-  setProfileInfoInputs();
+  setProfileInfoInputs({
+    name: profileNameElement.textContent,
+    status: profileStatusElement.textContent
+  });
 
   openPopup(editProfilePopup);
 }
