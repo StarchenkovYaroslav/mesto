@@ -29,8 +29,8 @@ const initialCards = [
 // getting elements from DOM
 const profileNameElement = document.querySelector('.profile__name');
 const profileStatusElement = document.querySelector('.profile__status');
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button');
+const editProfileButton = document.querySelector('.profile__edit-button');
+const addCardButton = document.querySelector('.profile__add-button');
 
 const editProfileForm = document.querySelector('.form_action_edit-profile-info');
 const profileNameInput = document.querySelector('.form__input_data_profile-name');
@@ -53,12 +53,12 @@ const pictureDescriptionElement = document.querySelector('.picture__description'
 
 
 // difining functions
-function setProfileInfoInputs(profile) {
+function setProfileInputs(profile) {
   profileNameInput.value = profile.name;
   profileStatusInput.value = profile.status;
 }
 
-function setProfileInfoElements(profile) {
+function setProfileElements(profile) {
   profileNameElement.textContent = profile.name;
   profileStatusElement.textContent = profile.status;
 }
@@ -78,7 +78,7 @@ function closePopup(popupElement) {
 }
 
 function profileEditButtonClickHandler() {
-  setProfileInfoInputs({
+  setProfileInputs({
     name: profileNameElement.textContent,
     status: profileStatusElement.textContent
   });
@@ -132,7 +132,7 @@ function createCardElement(card) {
 function editProfileFormSubmitHandler(evt) {
   evt.preventDefault();
 
-  setProfileInfoElements({
+  setProfileElements({
     name: profileNameInput.value,
     status: profileStatusInput.value
   });
@@ -156,9 +156,9 @@ function addCardFormSubmitHandler(evt) {
 
 
 // adding listeners
-profileEditButton.addEventListener('click', profileEditButtonClickHandler);
+editProfileButton.addEventListener('click', profileEditButtonClickHandler);
 
-profileAddButton.addEventListener('click', profileAddButtonClickHandler);
+addCardButton.addEventListener('click', profileAddButtonClickHandler);
 
 popupCloseButtons.forEach(popupCloseButton => {
   popupCloseButton.addEventListener('click', popupCloseButtonClickHandler);
