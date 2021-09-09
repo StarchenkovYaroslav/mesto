@@ -22,8 +22,8 @@ function checkInputValidity(settings, form, input) {
   }
 }
 
-function setEventListeners(settings, form, fieldset) {
-  const inputs = Array.from(fieldset.querySelectorAll(settings.inputSelector));
+function setEventListeners(settings, form) {
+  const inputs = Array.from(form.querySelectorAll(settings.inputSelector));
   inputs.forEach(input => {
     input.addEventListener('input', function (evt) {
       checkInputValidity(settings, form, input);
@@ -39,11 +39,7 @@ function enableValidation(settings) {
       evt.preventDefault();
     });
 
-    const fieldsets = Array.from(form.querySelectorAll(settings.fieldsetSelector));
-
-    fieldsets.forEach(fieldset => {
-      setEventListeners(settings, form, fieldset)
-    });
+    setEventListeners(settings, form);
   });
 }
 
