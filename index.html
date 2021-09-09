@@ -53,19 +53,23 @@
             <h2 class="form__title">Редактировать профиль</h2>
             <fieldset class="form__input-container">
               <input
+                id="profile-name-input"
                 type="text"
                 name="profile-name"
                 placeholder="Имя"
                 required
-                class="form__input form__input_data_profile-name"
+                class="profile-name-input-error form__input form__input_data_profile-name"
               >
+              <span class="form__input-error"></span>
               <input
+                id="profile-status-input"
                 type="text"
                 name="profile-status"
                 placeholder="Статус"
                 required
                 class="form__input form__input_data_profile-status"
               >
+              <span class="profile-status-input-error form__input-error"></span>
             </fieldset>
             <button
               type="submit"
@@ -84,19 +88,23 @@
             <h2 class="form__title">Новое место</h2>
             <fieldset class="form__input-container">
               <input
+                id="card-title-input"
                 type="text"
                 name="card-title"
                 placeholder="Название"
                 required
                 class="form__input form__input_data_card-title"
               >
+              <span class="card-title-input-error form__input-error"></span>
               <input
+                id="card-image-url-input"
                 type="url"
                 name="card-image-url"
                 placeholder="Ссылка на картинку"
                 required
                 class="form__input form__input_data_card-image-url"
               >
+              <span class="card-image-url-input-error form__input-error"></span>
             </fieldset>
             <button
               type="submit"
