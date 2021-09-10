@@ -149,8 +149,6 @@ function createCardElement(card) {
 }
 
 function editProfileFormSubmitHandler(evt) {
-  evt.preventDefault();
-
   setProfileElements({
     name: profileNameInput.value,
     status: profileStatusInput.value
@@ -160,8 +158,6 @@ function editProfileFormSubmitHandler(evt) {
 }
 
 function addCardFormSubmitHandler(evt) {
-  evt.preventDefault();
-
   const cardElement = createCardElement({
     title: cardTitleInput.value,
     imageUrl: cardImageUrlInput.value
