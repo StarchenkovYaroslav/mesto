@@ -71,12 +71,21 @@ function setPictureElements(card) {
   pictureDescriptionElement.textContent = card.title;
 }
 
+
 function openPopup(popupElement) {
+  document.addEventListener('keydown', documentKeyHandler);
   popupElement.classList.add('popup_opened');
 }
 
 function closePopup(popupElement) {
+  document.removeEventListener('keydown', documentKeyHandler);
   popupElement.classList.remove('popup_opened');
+}
+
+function documentKeyHandler(evt) {
+  if (evt.key === 'Escape') {
+    closePopup( document.querySelector('.popup_opened') );
+  }
 }
 
 function popupClickHandler(evt) {
