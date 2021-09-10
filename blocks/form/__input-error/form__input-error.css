@@ -1,12 +1,10 @@
 .form__input-error {
   color: #f00;
-  display: block;
+  display: none;
   font-size: 12px;
   font-weight: normal;
   line-height: 1.25;
   margin: 0 0 13px;
-  opacity: 0;
-  transition: all .2s;
 }
 
 .form__input-error:last-of-type {
