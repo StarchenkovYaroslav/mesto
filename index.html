@@ -52,28 +52,32 @@
           >
             <h2 class="form__title">Редактировать профиль</h2>
             <fieldset class="form__input-container">
-              <input
-                id="profile-name-input"
-                type="text"
-                name="profile-name"
-                placeholder="Имя"
-                minlength="2"
-                maxlength="40"
-                required
-                class="form__input form__input_data_profile-name"
-              >
-              <span class="profile-name-input-error form__input-error"></span>
-              <input
-                id="profile-status-input"
-                type="text"
-                name="profile-status"
-                placeholder="Статус"
-                minlength="2"
-                maxlength="200"
-                required
-                class="form__input form__input_data_profile-status"
-              >
-              <span class="profile-status-input-error form__input-error"></span>
+              <div class="form__field">
+                <input
+                  id="profile-name-input"
+                  type="text"
+                  name="profile-name"
+                  placeholder="Имя"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                  class="form__input form__input_data_profile-name"
+                >
+                <span class="profile-name-input-error form__input-error"></span>
+              </div>
+              <div class="form__field">
+                <input
+                  id="profile-status-input"
+                  type="text"
+                  name="profile-status"
+                  placeholder="Статус"
+                  minlength="2"
+                  maxlength="200"
+                  required
+                  class="form__input form__input_data_profile-status"
+                >
+                <span class="profile-status-input-error form__input-error"></span>
+              </div>
             </fieldset>
             <button
               type="submit"
@@ -91,26 +95,30 @@
           <form name="add-new-card" class="form form_action_add-card">
             <h2 class="form__title">Новое место</h2>
             <fieldset class="form__input-container">
-              <input
-                id="card-title-input"
-                type="text"
-                name="card-title"
-                placeholder="Название"
-                minlength="2"
-                maxlength="30"
-                required
-                class="form__input form__input_data_card-title"
-              >
-              <span class="card-title-input-error form__input-error"></span>
-              <input
-                id="card-image-url-input"
-                type="url"
-                name="card-image-url"
-                placeholder="Ссылка на картинку"
-                required
-                class="form__input form__input_data_card-image-url"
-              >
-              <span class="card-image-url-input-error form__input-error"></span>
+              <div class="form__field">
+                <input
+                  id="card-title-input"
+                  type="text"
+                  name="card-title"
+                  placeholder="Название"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                  class="form__input form__input_data_card-title"
+                >
+                <span class="card-title-input-error form__input-error"></span>
+              </div>
+              <div class="form__field">
+                <input
+                  id="card-image-url-input"
+                  type="url"
+                  name="card-image-url"
+                  placeholder="Ссылка на картинку"
+                  required
+                  class="form__input form__input_data_card-image-url"
+                >
+                <span class="card-image-url-input-error form__input-error"></span>
+              </div>
             </fieldset>
             <button
               type="submit"
