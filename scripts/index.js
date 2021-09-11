@@ -102,7 +102,7 @@ function documentKeyHandler(evt) {
 }
 
 function popupClickHandler(evt) {
-  closePopup(evt.currentTarget);
+  closePopup( document.querySelector('.popup_opened') );
 }
 
 function popupContainerClickHandler(evt) {
