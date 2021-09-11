@@ -55,7 +55,7 @@ const pictureDescriptionElement = document.querySelector('.picture__description'
 
 
 // difining functions
-function setFormInputs(form, data) {
+function setFormInputsValues(form, data) {
   const inputs = Array.from(form.querySelectorAll('.form__input'));
 
   inputs.forEach(input => {
@@ -111,7 +111,7 @@ function popupContainerMousedownHandler(evt) {
 }
 
 function profileEditButtonClickHandler() {
-  setFormInputs(editProfileForm, {
+  setFormInputsValues(editProfileForm, {
     name: profileNameElement.textContent,
     status: profileStatusElement.textContent
   });
