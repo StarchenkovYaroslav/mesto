@@ -45,7 +45,12 @@ function setEventListeners(settings, form) {
   toggleButtonState(settings, submitButton, inputs);
 
   inputs.forEach(input => {
-    input.addEventListener('input', function (evt) {
+    input.addEventListener('input', function () {
+      checkInputValidity(settings, form, input);
+      toggleButtonState(settings, submitButton, inputs);
+    });
+
+    input.addEventListener('inputByScript', function () {
       checkInputValidity(settings, form, input);
       toggleButtonState(settings, submitButton, inputs);
     });
@@ -59,10 +64,12 @@ function enableValidation(settings) {
     const submitButton = form.querySelector('.form__button_type_submit');
     const inputs = Array.from(form.querySelectorAll('.form__input'));
 
-    form.addEventListener('submit', evt => {
-      evt.preventDefault();
-
+    form.addEventListener('resetByScript', function () {
       toggleButtonState(settings, submitButton, inputs);
+    });
+
+    form.addEventListener('submit', function (evt) {
+      evt.preventDefault();
     });
 
     setEventListeners(settings, form);

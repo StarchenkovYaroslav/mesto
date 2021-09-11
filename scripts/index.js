@@ -55,9 +55,22 @@ const pictureDescriptionElement = document.querySelector('.picture__description'
 
 
 // difining functions
-function setProfileInputsValues(profile) {
-  profileNameInput.value = profile.name;
-  profileStatusInput.value = profile.status;
+function setFormInputs(form, data) {
+  const inputs = Array.from(form.querySelectorAll('.form__input'));
+
+  inputs.forEach(input => {
+    if (input.name in data) {
+      input.value = data[input.name];
+      input.dispatchEvent( new Event('inputByScript') );
+    } else {
+      throw new Error('wrong data was passed');
+    }
+  });
+}
+
+function resetForm(form) {
+  form.reset();
+  form.dispatchEvent( new Event('resetByScript') );
 }
 
 function setProfileElementsValues(profile) {
@@ -97,7 +110,7 @@ function popupContainerClickHandler(evt) {
 }
 
 function profileEditButtonClickHandler() {
-  setProfileInputsValues({
+  setFormInputs(editProfileForm, {
     name: profileNameElement.textContent,
     status: profileStatusElement.textContent
   });
@@ -164,7 +177,7 @@ function addCardFormSubmitHandler(evt) {
   });
   cardsElement.prepend(cardElement);
 
-  addCardForm.reset();
+  resetForm(addCardForm);
 
   closePopup(addCardPopup);
 }
