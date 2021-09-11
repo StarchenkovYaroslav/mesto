@@ -55,31 +55,31 @@ const pictureDescriptionElement = document.querySelector('.picture__description'
 
 
 // difining functions
-function setProfileInputs(profile) {
+function setProfileInputsValues(profile) {
   profileNameInput.value = profile.name;
   profileStatusInput.value = profile.status;
 }
 
-function setProfileElements(profile) {
+function setProfileElementsValues(profile) {
   profileNameElement.textContent = profile.name;
   profileStatusElement.textContent = profile.status;
 }
 
-function setPictureElements(card) {
+function setPictureElementsValues(card) {
   pictureImageElement.src = card.imageUrl;
   pictureImageElement.alt = card.title;
   pictureDescriptionElement.textContent = card.title;
 }
 
 
-function openPopup(popupElement) {
+function openPopup(popup) {
   document.addEventListener('keydown', documentKeyHandler);
-  popupElement.classList.add('popup_opened');
+  popup.classList.add('popup_opened');
 }
 
-function closePopup(popupElement) {
+function closePopup(popup) {
   document.removeEventListener('keydown', documentKeyHandler);
-  popupElement.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
 }
 
 function documentKeyHandler(evt) {
@@ -97,7 +97,7 @@ function popupContainerClickHandler(evt) {
 }
 
 function profileEditButtonClickHandler() {
-  setProfileInputs({
+  setProfileInputsValues({
     name: profileNameElement.textContent,
     status: profileStatusElement.textContent
   });
@@ -114,7 +114,7 @@ function popupCloseButtonClickHandler(evt) {
 }
 
 function cardImageClickHandler(evt) {
-  setPictureElements({
+  setPictureElementsValues({
     title: evt.target.closest('.card').querySelector('.card__title').textContent,
     imageUrl: evt.target.src
   });
@@ -149,7 +149,7 @@ function createCardElement(card) {
 }
 
 function editProfileFormSubmitHandler(evt) {
-  setProfileElements({
+  setProfileElementsValues({
     name: profileNameInput.value,
     status: profileStatusInput.value
   });
