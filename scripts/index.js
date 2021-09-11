@@ -84,7 +84,6 @@ function setPictureElementsValues(card) {
   pictureDescriptionElement.textContent = card.title;
 }
 
-
 function openPopup(popup) {
   document.addEventListener('keydown', documentKeyHandler);
   popup.classList.add('popup_opened');
