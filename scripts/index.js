@@ -101,11 +101,13 @@ function documentKeyHandler(evt) {
   }
 }
 
-function popupClickHandler(evt) {
-  closePopup( document.querySelector('.popup_opened') );
+function popupMousedownHandler() {
+  if (document.querySelector('.popup_opened')) {
+    closePopup( document.querySelector('.popup_opened') );
+  }
 }
 
-function popupContainerClickHandler(evt) {
+function popupContainerMousedownHandler(evt) {
   evt.stopPropagation();
 }
 
@@ -193,11 +195,11 @@ popupCloseButtons.forEach(popupCloseButton => {
 });
 
 popups.forEach(popup => {
-  popup.addEventListener('click', popupClickHandler);
+  popup.addEventListener('mousedown', popupMousedownHandler);
 });
 
 popupContainers.forEach(popupContainer => {
-  popupContainer.addEventListener('click', popupContainerClickHandler);
+  popupContainer.addEventListener('mousedown', popupContainerMousedownHandler);
 });
 
 editProfileForm.addEventListener('submit', editProfileFormSubmitHandler);
