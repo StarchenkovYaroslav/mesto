@@ -63,7 +63,7 @@ function setFormInputs(form, data) {
       input.value = data[input.name];
       input.dispatchEvent( new Event('inputByScript') );
     } else {
-      throw new Error('wrong data was passed');
+      throw new Error('inputs and data dont match');
     }
   });
 }
