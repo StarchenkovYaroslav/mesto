@@ -56,8 +56,13 @@ function enableValidation(settings) {
   const forms = Array.from(document.querySelectorAll('.form'));
 
   forms.forEach(form => {
+    const submitButton = form.querySelector('.form__button_type_submit');
+    const inputs = Array.from(form.querySelectorAll('.form__input'));
+
     form.addEventListener('submit', evt => {
       evt.preventDefault();
+
+      toggleButtonState(settings, submitButton, inputs);
     });
 
     setEventListeners(settings, form);
