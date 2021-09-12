@@ -104,10 +104,8 @@ function documentKeyHandler(evt) {
   }
 }
 
-function popupMousedownHandler() {
-  if (document.querySelector('.popup_opened')) {
-    closePopup( document.querySelector('.popup_opened') );
-  }
+function popupMousedownHandler(evt) {
+  closePopup(evt.currentTarget);
 }
 
 function popupContainerMousedownHandler(evt) {
