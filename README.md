@@ -1,6 +1,6 @@
 # MESTO
 
-## [Проект на GitHub Pages](https://starchenkovyaroslav.github.io/mesto/index.html)
+## [Проект на GitHub Pages](https://starchenkovyaroslav.github.io/mesto/)
 
 ## Описание проекта
 
