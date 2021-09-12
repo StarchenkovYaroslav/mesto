@@ -39,7 +39,7 @@ function checkInputValidity(settings, form, input) {
 }
 
 function setEventListeners(settings, form) {
-  const inputs = Array.from(form.querySelectorAll(settings.inputSelector));
+  const inputs = Array.from( form.querySelectorAll(settings.inputSelector) );
   const submitButton = form.querySelector(settings.submitButtonSelector);
 
   toggleButtonState(settings, submitButton, inputs);
@@ -49,25 +49,13 @@ function setEventListeners(settings, form) {
       checkInputValidity(settings, form, input);
       toggleButtonState(settings, submitButton, inputs);
     });
-
-    input.addEventListener('inputByScript', function () {
-      checkInputValidity(settings, form, input);
-      toggleButtonState(settings, submitButton, inputs);
-    });
   });
 }
 
-function enableValidation(settings) {
-  const forms = Array.from(document.querySelectorAll('.form'));
+export function enableValidation(settings) {
+  const forms = Array.from( document.querySelectorAll('.form') );
 
   forms.forEach(form => {
-    const submitButton = form.querySelector('.form__button_type_submit');
-    const inputs = Array.from(form.querySelectorAll('.form__input'));
-
-    form.addEventListener('resetByScript', function () {
-      toggleButtonState(settings, submitButton, inputs);
-    });
-
     form.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
@@ -76,12 +64,16 @@ function enableValidation(settings) {
   });
 }
 
-enableValidation({
-  formSelector: '.form',
-  fieldsetSelector: '.form__input-container',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button_type_submit',
-  inactiveButtonClass: 'form__button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-});
+export function resetFormValidation(settings, form) {
+  const inputs = Array.from( form.querySelectorAll('.form__input') );
+  const submitButton = form.querySelector(settings.submitButtonSelector);
+
+  inputs.forEach(input => {
+    const error = form.querySelector(`.${input.id}-error`);
+
+    input.classList.remove(settings.inputErrorClass);
+    error.classList.remove(settings.errorClass);
+  });
+
+  toggleButtonState(settings, submitButton, inputs);
+}

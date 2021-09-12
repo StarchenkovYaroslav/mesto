@@ -1,3 +1,6 @@
+import * as settings from './modules/settings.js';
+import * as validate from './modules/validate.js';
+
 const initialCards = [
   {
     title: 'Архыз',
@@ -61,16 +64,17 @@ function setFormInputsValues(form, data) {
   inputs.forEach(input => {
     if (input.name in data) {
       input.value = data[input.name];
-      input.dispatchEvent( new Event('inputByScript') );
     } else {
       throw new Error('inputs and data dont match');
     }
   });
+
+  validate.resetFormValidation(settings.formClassesAndSelectors, form);
 }
 
 function resetForm(form) {
   form.reset();
-  form.dispatchEvent( new Event('resetByScript') );
+  validate.resetFormValidation(settings.formClassesAndSelectors, form);
 }
 
 function setProfileElementsValues(profile) {
@@ -210,3 +214,6 @@ addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 initialCards.forEach(initialCard => {
   cardsElement.append( createCardElement(initialCard) );
 });
+
+// init form validation
+validate.enableValidation(settings.formClassesAndSelectors);
