@@ -65,14 +65,11 @@ export function enableValidation(settings) {
 }
 
 export function resetFormValidation(settings, form) {
-  const inputs = Array.from( form.querySelectorAll('.form__input') );
+  const inputs = Array.from( form.querySelectorAll(settings.inputSelector) );
   const submitButton = form.querySelector(settings.submitButtonSelector);
 
   inputs.forEach(input => {
-    const error = form.querySelector(`.${input.id}-error`);
-
-    input.classList.remove(settings.inputErrorClass);
-    error.classList.remove(settings.errorClass);
+    hideInputError(settings, form, input);
   });
 
   toggleButtonState(settings, submitButton, inputs);
