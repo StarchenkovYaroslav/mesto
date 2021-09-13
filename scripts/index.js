@@ -1,5 +1,5 @@
-import * as settings from './modules/settings.js';
-import * as validate from './modules/validate.js';
+import * as settings from './settings.js';
+import * as validate from './validate.js';
 
 const initialCards = [
   {
