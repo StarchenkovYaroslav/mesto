@@ -55,7 +55,7 @@ const pictureImageElement = document.querySelector('.picture__image');
 const pictureDescriptionElement = document.querySelector('.picture__description');
 
 
-// difining functions
+// defining functions
 function setFormInputsValues(form, data) {
   const inputs = Array.from(form.querySelectorAll('.form__input'));
 
@@ -156,7 +156,7 @@ function createCardElement(card) {
   return cardElement;
 }
 
-function editProfileFormSubmitHandler(evt) {
+function editProfileFormSubmitHandler() {
   setProfileElementsValues({
     name: profileNameInput.value,
     status: profileStatusInput.value
@@ -165,7 +165,7 @@ function editProfileFormSubmitHandler(evt) {
   closePopup(editProfilePopup);
 }
 
-function addCardFormSubmitHandler(evt) {
+function addCardFormSubmitHandler() {
   const cardElement = createCardElement({
     title: cardTitleInput.value,
     imageUrl: cardImageUrlInput.value
