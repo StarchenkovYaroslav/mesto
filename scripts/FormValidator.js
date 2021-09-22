@@ -11,11 +11,11 @@ export default class FormValidator {
   }
 
   enableValidation() {
-      this._form.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
+    this._form.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
 
-      this._setEventListeners();
+    this._setEventListeners();
   }
 
   resetValidation() {
