@@ -69,12 +69,12 @@ function setFormInputsValues(form, data) {
     }
   });
 
-  new FormValidator(settings.formClassesAndSelectors, form).resetFormValidation();
+  new FormValidator(settings.formClassesAndSelectors, form).resetValidation();
 }
 
 function resetForm(form) {
   form.reset();
-  new FormValidator(settings.formClassesAndSelectors, form).resetFormValidation();
+  new FormValidator(settings.formClassesAndSelectors, form).resetValidation();
 }
 
 function setProfileElementsValues(profile) {
