@@ -1,5 +1,5 @@
 import * as settings from './settings.js';
-import * as validate from './validate.js';
+import FormValidator from './FormValidator.js';
 
 const initialCards = [
   {
@@ -54,6 +54,8 @@ const cardTemplate = document.querySelector('#card-template').content;
 const pictureImageElement = document.querySelector('.picture__image');
 const pictureDescriptionElement = document.querySelector('.picture__description');
 
+const forms = document.querySelectorAll('.form');
+
 
 // defining functions
 function setFormInputsValues(form, data) {
@@ -67,12 +69,12 @@ function setFormInputsValues(form, data) {
     }
   });
 
-  validate.resetFormValidation(settings.formClassesAndSelectors, form);
+  new FormValidator(settings.formClassesAndSelectors, form).resetFormValidation();
 }
 
 function resetForm(form) {
   form.reset();
-  validate.resetFormValidation(settings.formClassesAndSelectors, form);
+  new FormValidator(settings.formClassesAndSelectors, form).resetFormValidation();
 }
 
 function setProfileElementsValues(profile) {
@@ -198,4 +200,6 @@ initialCards.forEach(initialCard => {
 });
 
 // init form validation
-validate.enableValidation(settings.formClassesAndSelectors);
+forms.forEach(form => {
+  new FormValidator(settings.formClassesAndSelectors, form).enableValidation();
+});
