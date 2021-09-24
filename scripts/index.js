@@ -1,5 +1,6 @@
 import * as settings from './settings.js';
 import FormValidator from './FormValidator.js';
+import Card from './Card.js';
 
 const initialCards = [
   {
@@ -46,13 +47,8 @@ const cardImageUrlInput = document.querySelector('.form__input_data_card-image-u
 const popups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile-form');
 const addCardPopup = document.querySelector('.popup_content_add-card-form');
-const picturePopup = document.querySelector('.popup_content_picture');
 
 const cardsElement = document.querySelector('.cards');
-const cardTemplate = document.querySelector('#card-template').content;
-
-const pictureImageElement = document.querySelector('.picture__image');
-const pictureDescriptionElement = document.querySelector('.picture__description');
 
 const forms = document.querySelectorAll('.form');
 
@@ -80,12 +76,6 @@ function resetForm(form) {
 function setProfileElementsValues(profile) {
   profileNameElement.textContent = profile.name;
   profileStatusElement.textContent = profile.status;
-}
-
-function setPictureElementsValues(card) {
-  pictureImageElement.src = card.imageUrl;
-  pictureImageElement.alt = card.title;
-  pictureDescriptionElement.textContent = card.title;
 }
 
 function openPopup(popup) {
@@ -123,41 +113,6 @@ function profileAddButtonClickHandler() {
   openPopup(addCardPopup);
 }
 
-function cardImageClickHandler(evt) {
-  setPictureElementsValues({
-    title: evt.target.closest('.card').querySelector('.card__title').textContent,
-    imageUrl: evt.target.src
-  });
-
-  openPopup(picturePopup);
-}
-
-function cardLikeButtonClickHandler(evt) {
-  evt.target.classList.toggle('card__like-button_active');
-}
-
-function cardDeleteButtonClickHandler(evt) {
-  evt.target.closest('.card').remove();
-}
-
-function createCardElement(card) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardTitleElement = cardElement.querySelector('.card__title');
-  const cardImageElement = cardElement.querySelector('.card__image');
-  const cardLikeButton = cardElement.querySelector('.card__like-button');
-  const cardDeleteButton = cardElement.querySelector('.card__delete-button');
-
-  cardTitleElement.textContent = card.title;
-  cardImageElement.src = card.imageUrl;
-  cardImageElement.alt = card.title;
-
-  cardImageElement.addEventListener('click', cardImageClickHandler);
-  cardLikeButton.addEventListener('click', cardLikeButtonClickHandler);
-  cardDeleteButton.addEventListener('click', cardDeleteButtonClickHandler);
-
-  return cardElement;
-}
-
 function editProfileFormSubmitHandler() {
   setProfileElementsValues({
     name: profileNameInput.value,
@@ -168,11 +123,11 @@ function editProfileFormSubmitHandler() {
 }
 
 function addCardFormSubmitHandler() {
-  const cardElement = createCardElement({
+  const cardData = {
     title: cardTitleInput.value,
     imageUrl: cardImageUrlInput.value
-  });
-  cardsElement.prepend(cardElement);
+  }
+  cardsElement.prepend( new Card(settings.cardTemplateSelector, cardData).element );
 
   resetForm(addCardForm);
 
@@ -196,7 +151,7 @@ addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  cardsElement.append( createCardElement(initialCard) );
+  cardsElement.append( new Card(settings.cardTemplateSelector, initialCard).element );
 });
 
 // init form validation
