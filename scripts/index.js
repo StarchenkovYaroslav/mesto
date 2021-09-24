@@ -1,4 +1,5 @@
 import * as settings from './settings.js';
+import {openPopup, closePopup} from './utils.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
@@ -76,22 +77,6 @@ function resetForm(form) {
 function setProfileElementsValues(profile) {
   profileNameElement.textContent = profile.name;
   profileStatusElement.textContent = profile.status;
-}
-
-function openPopup(popup) {
-  document.addEventListener('keydown', documentKeyHandler);
-  popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-  document.removeEventListener('keydown', documentKeyHandler);
-  popup.classList.remove('popup_opened');
-}
-
-function documentKeyHandler(evt) {
-  if (evt.key === 'Escape') {
-    closePopup( document.querySelector('.popup_opened') );
-  }
 }
 
 function popupMousedownHandler(evt) {

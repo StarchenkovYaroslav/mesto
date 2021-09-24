@@ -1,3 +1,5 @@
+import {openPopup, setPictureElementValues} from './utils.js';
+
 export default class Card {
   _popup = document.querySelector('.popup_content_picture');
 
@@ -8,6 +10,14 @@ export default class Card {
     this._title = data.title;
 
     this._element = this._generateElement();
+  }
+
+  get imageUrl() {
+    return this._imageUrl;
+  }
+
+  get title() {
+    return this._title;
   }
 
   get element() {
@@ -43,8 +53,8 @@ export default class Card {
   }
 
   _handleImageClick() {
-    this._setPopupElementValues();
-    this._openPopup();
+    setPictureElementValues(this);
+    openPopup(this._popup);
   }
 
   _handleLikeButtonClick() {
@@ -53,15 +63,5 @@ export default class Card {
 
   _handleDeleteButtonClick() {
     this._element.remove();
-  }
-
-  _setPopupElementValues() {
-    this._popup.querySelector('.picture__image').src = this._imageUrl;
-    this._popup.querySelector('.picture__image').alt = this._title;
-    this._popup.querySelector('.picture__description').textContent = this._title;
-  }
-
-  _openPopup() {
-    this._popup.classList.add('popup_opened');
   }
 };
