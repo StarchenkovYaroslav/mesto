@@ -54,8 +54,6 @@ const pictureDescriptionElement = document.querySelector('.picture__description'
 
 const cardsElement = document.querySelector('.cards');
 
-const forms = document.querySelectorAll('.form');
-
 // creating validators
 const editProfileFormValidator = new FormValidator(settings.formClassesAndSelectors, editProfileForm);
 const addCardFormValidator = new FormValidator(settings.formClassesAndSelectors, addCardForm);
