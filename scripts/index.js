@@ -56,9 +56,12 @@ const cardsElement = document.querySelector('.cards');
 
 const forms = document.querySelectorAll('.form');
 
+// creating validators
+const editProfileFormValidator = new FormValidator(settings.formClassesAndSelectors, editProfileForm);
+const addCardFormValidator = new FormValidator(settings.formClassesAndSelectors, addCardForm);
 
 // defining functions
-function setFormInputsValues(form, data) {
+function setFormInputsValues(form, formValidator, data) {
   const inputs = Array.from(form.querySelectorAll('.form__input'));
 
   inputs.forEach(input => {
@@ -69,12 +72,12 @@ function setFormInputsValues(form, data) {
     }
   });
 
-  new FormValidator(settings.formClassesAndSelectors, form).resetValidation();
+  formValidator.resetValidation();
 }
 
-function resetForm(form) {
+function resetForm(form, formValidator) {
   form.reset();
-  new FormValidator(settings.formClassesAndSelectors, form).resetValidation();
+  formValidator.resetValidation();
 }
 
 function setProfileElementsValues(profile) {
@@ -116,7 +119,7 @@ function popupMousedownHandler(evt) {
 }
 
 function profileEditButtonClickHandler() {
-  setFormInputsValues(editProfileForm, {
+  setFormInputsValues(editProfileForm, editProfileFormValidator, {
     name: profileNameElement.textContent,
     status: profileStatusElement.textContent
   });
@@ -144,7 +147,7 @@ function addCardFormSubmitHandler() {
   }
   cardsElement.prepend( new Card(settings.cardTemplateSelector, cardData, cardImageClickHandler).element );
 
-  resetForm(addCardForm);
+  resetForm(addCardForm, addCardFormValidator);
 
   closePopup(addCardPopup);
 }
@@ -170,6 +173,5 @@ initialCards.forEach(initialCard => {
 });
 
 // init form validation
-forms.forEach(form => {
-  new FormValidator(settings.formClassesAndSelectors, form).enableValidation();
-});
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
