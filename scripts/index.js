@@ -1,5 +1,4 @@
 import * as settings from './settings.js';
-import {openPopup, closePopup} from './utils.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
@@ -48,6 +47,10 @@ const cardImageUrlInput = document.querySelector('.form__input_data_card-image-u
 const popups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile-form');
 const addCardPopup = document.querySelector('.popup_content_add-card-form');
+const picturePopup = document.querySelector('.popup_content_picture');
+
+const pictureImageElement = document.querySelector('.picture__image');
+const pictureDescriptionElement = document.querySelector('.picture__description');
 
 const cardsElement = document.querySelector('.cards');
 
@@ -77,6 +80,33 @@ function resetForm(form) {
 function setProfileElementsValues(profile) {
   profileNameElement.textContent = profile.name;
   profileStatusElement.textContent = profile.status;
+}
+
+function setPictureElementsValues(card) {
+  pictureImageElement.src = card.imageUrl;
+  pictureImageElement.alt = card.title;
+  pictureDescriptionElement.textContent = card.title;
+}
+
+function openPopup(popup) {
+  document.addEventListener('keydown', documentKeyHandler);
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  document.removeEventListener('keydown', documentKeyHandler);
+  popup.classList.remove('popup_opened');
+}
+
+function documentKeyHandler(evt) {
+  if (evt.key === 'Escape') {
+    closePopup( document.querySelector('.popup_opened') );
+  }
+}
+
+function cardImageClickHandler(card) {
+  setPictureElementsValues(card);
+  openPopup(picturePopup);
 }
 
 function popupMousedownHandler(evt) {
@@ -112,7 +142,7 @@ function addCardFormSubmitHandler() {
     title: cardTitleInput.value,
     imageUrl: cardImageUrlInput.value
   }
-  cardsElement.prepend( new Card(settings.cardTemplateSelector, cardData).element );
+  cardsElement.prepend( new Card(settings.cardTemplateSelector, cardData, cardImageClickHandler).element );
 
   resetForm(addCardForm);
 
@@ -136,7 +166,7 @@ addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  cardsElement.append( new Card(settings.cardTemplateSelector, initialCard).element );
+  cardsElement.append( new Card(settings.cardTemplateSelector, initialCard, cardImageClickHandler).element );
 });
 
 // init form validation

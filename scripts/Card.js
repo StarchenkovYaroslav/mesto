@@ -1,13 +1,11 @@
-import {openPopup, setPictureElementValues} from './utils.js';
-
 export default class Card {
-  _popup = document.querySelector('.popup_content_picture');
-
-  constructor(templateSelector, data) {
+  constructor(templateSelector, data, handleImageClick) {
     this._templateSelector = templateSelector;
 
     this._imageUrl = data.imageUrl;
     this._title = data.title;
+
+    this._handleImageClick = handleImageClick;
 
     this._element = this._generateElement();
   }
@@ -42,7 +40,7 @@ export default class Card {
 
   _setEventListeners(element) {
     element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleImageClick();
+      this._handleImageClick(this);
     });
     element.querySelector('.card__like-button').addEventListener('click', () => {
       this._handleLikeButtonClick();
@@ -50,11 +48,6 @@ export default class Card {
     element.querySelector('.card__delete-button').addEventListener('click', () => {
       this._handleDeleteButtonClick();
     });
-  }
-
-  _handleImageClick() {
-    setPictureElementValues(this);
-    openPopup(this._popup);
   }
 
   _handleLikeButtonClick() {
