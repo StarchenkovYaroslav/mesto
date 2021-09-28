@@ -10,6 +10,10 @@
   width: 24px;
 }
 
+.profile__edit-button:focus {
+  outline: none;
+}
+
 .profile__edit-button:hover {
   opacity: .6;
 }
