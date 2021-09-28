@@ -143,7 +143,7 @@ function addCardFormSubmitHandler() {
     title: cardTitleInput.value,
     imageUrl: cardImageUrlInput.value
   }
-  cardsElement.prepend( new Card(settings.cardTemplateSelector, cardData, cardImageClickHandler).element );
+  cardsElement.prepend( new Card(settings.cardClassesAndSelectors, cardData, cardImageClickHandler).element );
 
   resetForm(addCardForm, addCardFormValidator);
 
@@ -167,7 +167,7 @@ addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  cardsElement.append( new Card(settings.cardTemplateSelector, initialCard, cardImageClickHandler).element );
+  cardsElement.append( new Card(settings.cardClassesAndSelectors, initialCard, cardImageClickHandler).element );
 });
 
 // init form validation

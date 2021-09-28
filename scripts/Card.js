@@ -1,6 +1,12 @@
 export default class Card {
-  constructor(templateSelector, data, handleImageClick) {
-    this._templateSelector = templateSelector;
+  constructor(settings, data, handleImageClick) {
+    this._templateSelector = settings.templateSelector;
+    this._elementSelector = settings.elementSelector;
+    this._imageSelector = settings.imageSelector;
+    this._titleSelector = settings.titleSelector;
+    this._likeButtonSelector = settings.likeButtonSelector;
+    this._deleteButtonSelector = settings.deleteButtonSelector;
+    this._activeLikeButtonClass = settings.activeLikeButtonClass;
 
     this._imageUrl = data.imageUrl;
     this._title = data.title;
@@ -8,10 +14,10 @@ export default class Card {
     this._handleImageClick = handleImageClick;
 
     this._element = this._getEmptyElement();
-    this._imageElement = this._element.querySelector('.card__image');
-    this._titleElement = this._element.querySelector('.card__title');
-    this._likeButtonElement = this._element.querySelector('.card__like-button');
-    this._deleteButtonElement = this._element.querySelector('.card__delete-button');
+    this._imageElement = this._element.querySelector(this._imageSelector);
+    this._titleElement = this._element.querySelector(this._titleSelector);
+    this._likeButtonElement = this._element.querySelector(this._likeButtonSelector);
+    this._deleteButtonElement = this._element.querySelector(this._deleteButtonSelector);
 
     this._fillElement();
   }
@@ -52,7 +58,7 @@ export default class Card {
   }
 
   _handleLikeButtonClick() {
-    this._likeButtonElement.classList.toggle('card__like-button_active');
+    this._likeButtonElement.classList.toggle(this._activeLikeButtonClass);
   }
 
   _handleDeleteButtonClick() {
@@ -60,7 +66,7 @@ export default class Card {
   }
 
   _getEmptyElement() {
-    return this._getTemplate().querySelector('.card').cloneNode(true);
+    return this._getTemplate().querySelector(this._elementSelector).cloneNode(true);
   }
 
   _getTemplate() {

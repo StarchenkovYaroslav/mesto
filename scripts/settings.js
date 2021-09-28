@@ -6,4 +6,12 @@ export const formClassesAndSelectors = {
   errorClass: 'form__input-error_active'
 };
 
-export const cardTemplateSelector = '#card-template';
+export const cardClassesAndSelectors = {
+  templateSelector: '#card-template',
+  elementSelector: '.card',
+  imageSelector: '.card__image',
+  titleSelector: '.card__title',
+  likeButtonSelector: '.card__like-button',
+  deleteButtonSelector: '.card__delete-button',
+  activeLikeButtonClass: 'card__like-button_active'
+};
