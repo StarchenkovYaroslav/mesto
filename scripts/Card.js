@@ -30,7 +30,7 @@ export default class Card {
     return this._title;
   }
 
-  get element() {
+  getElement() {
     return this._element;
   }
 
