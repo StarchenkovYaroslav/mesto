@@ -59,6 +59,10 @@ const editProfileFormValidator = new FormValidator(settings.formClassesAndSelect
 const addCardFormValidator = new FormValidator(settings.formClassesAndSelectors, addCardForm);
 
 // defining functions
+function createCard(data) {
+  return new Card(settings.cardClassesAndSelectors, data, cardImageClickHandler);
+}
+
 function setFormInputsValues(form, formValidator, data) {
   const inputs = Array.from(form.querySelectorAll('.form__input'));
 
@@ -143,7 +147,7 @@ function addCardFormSubmitHandler() {
     title: cardTitleInput.value,
     imageUrl: cardImageUrlInput.value
   }
-  cardsElement.prepend( new Card(settings.cardClassesAndSelectors, cardData, cardImageClickHandler).getElement() );
+  cardsElement.prepend( createCard(cardData).getElement() );
 
   resetForm(addCardForm, addCardFormValidator);
 
@@ -167,7 +171,7 @@ addCardForm.addEventListener('submit', addCardFormSubmitHandler);
 
 // initial filling cards
 initialCards.forEach(initialCard => {
-  cardsElement.append( new Card(settings.cardClassesAndSelectors, initialCard, cardImageClickHandler).getElement() );
+  cardsElement.append( createCard(initialCard).getElement() );
 });
 
 // init form validation
