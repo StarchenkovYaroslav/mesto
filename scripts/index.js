@@ -41,9 +41,7 @@ const addCardButton = document.querySelector('.profile__add-card-button');
 // creating sections
 const cardsContainer = new Section({
   items: initialCards,
-  render: (cardData) => {
-    cardsContainer.addElementToEnd( createCard(cardData).getElement() );
-  }
+  render: cardsContainerRenderer
 }, '.cards');
 
 
@@ -55,24 +53,14 @@ const editProfilePopup = new FormPopup(
   settings.popupClassesAndSelectors,
   '.popup_content_edit-profile-form',
   settings.formClassesAndSelectors,
-  (profileData) => {
-    profile.setInfo(profileData)
-
-    editProfilePopup.close();
-  }
+  editProfileFormSubmitHandler
 )
 
 const addCardPopup = new FormPopup(
   settings.popupClassesAndSelectors,
   '.popup_content_add-card-form',
   settings.formClassesAndSelectors,
-  (cardData) => {
-    cardsContainer.addElementToBegin( createCard(cardData).getElement() );
-
-    addCardPopup.resetForm();
-
-    addCardPopup.close();
-  }
+  addCardFormSubmitHandler
 )
 
 const picturePopup = new PicturePopup(
@@ -84,6 +72,24 @@ const picturePopup = new PicturePopup(
 // defining functions
 function createCard(data) {
   return new Card(settings.cardClassesAndSelectors, data, cardImageClickHandler);
+}
+
+function cardsContainerRenderer(cardData) {
+  cardsContainer.addElementToEnd( createCard(cardData).getElement() )
+}
+
+function editProfileFormSubmitHandler(profileData) {
+  profile.setInfo(profileData)
+
+  editProfilePopup.close();
+}
+
+function addCardFormSubmitHandler(cardData) {
+  cardsContainer.addElementToBegin( createCard(cardData).getElement() );
+
+  addCardPopup.resetForm();
+
+  addCardPopup.close();
 }
 
 function cardImageClickHandler(card) {
