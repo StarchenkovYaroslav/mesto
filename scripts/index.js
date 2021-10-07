@@ -1,4 +1,4 @@
-import * as settings from './settings.js';
+import * as constants from './constants.js';
 import Card from './Card.js';
 import Section from './Section.js';
 import FormPopup from './FormPopup.js';
@@ -13,13 +13,13 @@ const addCardButton = document.querySelector('.profile__add-card-button');
 
 // creating sections
 const cardsContainer = new Section({
-  items: settings.initialCards,
+  items: constants.initialCards,
   render: cardsContainerRenderer
 }, '.cards');
 
 
 // creating user
-const profile = new Profile(settings.profileClassesAndSelectors);
+const profile = new Profile(constants.profileClassesAndSelectors);
 
 
 // creating popups
@@ -38,23 +38,23 @@ const picturePopup = createPicturePopup('.popup_content_picture',);
 
 // defining functions
 function createCard(data) {
-  return new Card(settings.cardClassesAndSelectors, data, cardImageClickHandler);
+  return new Card(constants.cardClassesAndSelectors, data, cardImageClickHandler);
 }
 
 function createFormPopup(elementSelector, formSubmitHandler) {
   return new FormPopup(
-    settings.popupClassesAndSelectors,
+    constants.popupClassesAndSelectors,
     elementSelector,
-    settings.formClassesAndSelectors,
+    constants.formClassesAndSelectors,
     formSubmitHandler
   )
 }
 
 function createPicturePopup(elementSelector) {
   return new PicturePopup(
-    settings.popupClassesAndSelectors,
+    constants.popupClassesAndSelectors,
     elementSelector,
-    settings.pictureClassesAndSelectors
+    constants.pictureClassesAndSelectors
   )
 }
 
