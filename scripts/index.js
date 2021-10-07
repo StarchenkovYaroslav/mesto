@@ -5,6 +5,7 @@ import FormPopup from './FormPopup.js';
 import PicturePopup from './PicturePopup.js';
 import Profile from './Profile.js';
 
+
 const initialCards = [
   {
     title: 'Архыз',
@@ -48,30 +49,41 @@ const cardsContainer = new Section({
 // creating user
 const profile = new Profile(settings.profileClassesAndSelectors);
 
+
 // creating popups
-const editProfilePopup = new FormPopup(
-  settings.popupClassesAndSelectors,
+const editProfilePopup = createFormPopup(
   '.popup_content_edit-profile-form',
-  settings.formClassesAndSelectors,
   editProfileFormSubmitHandler
-)
+);
 
-const addCardPopup = new FormPopup(
-  settings.popupClassesAndSelectors,
+const addCardPopup = createFormPopup(
   '.popup_content_add-card-form',
-  settings.formClassesAndSelectors,
   addCardFormSubmitHandler
-)
+);
 
-const picturePopup = new PicturePopup(
-  settings.popupClassesAndSelectors,
-  '.popup_content_picture',
-  settings.pictureClassesAndSelectors
-)
+const picturePopup = createPicturePopup('.popup_content_picture',);
+
 
 // defining functions
 function createCard(data) {
   return new Card(settings.cardClassesAndSelectors, data, cardImageClickHandler);
+}
+
+function createFormPopup(elementSelector, formSubmitHandler) {
+  return new FormPopup(
+    settings.popupClassesAndSelectors,
+    elementSelector,
+    settings.formClassesAndSelectors,
+    formSubmitHandler
+  )
+}
+
+function createPicturePopup(elementSelector) {
+  return new PicturePopup(
+    settings.popupClassesAndSelectors,
+    elementSelector,
+    settings.pictureClassesAndSelectors
+  )
 }
 
 function cardsContainerRenderer(cardData) {
@@ -105,6 +117,7 @@ function profileEditButtonClickHandler() {
 function profileAddButtonClickHandler() {
   addCardPopup.open();
 }
+
 
 // adding listeners
 editProfileButton.addEventListener('click', profileEditButtonClickHandler);
