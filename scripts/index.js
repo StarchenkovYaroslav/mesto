@@ -3,6 +3,7 @@ import Card from './Card.js';
 import Section from './Section.js';
 import FormPopup from './FormPopup.js';
 import PicturePopup from './PicturePopup.js';
+import Profile from './Profile.js';
 
 const initialCards = [
   {
@@ -33,8 +34,6 @@ const initialCards = [
 
 
 // getting elements from DOM
-const profileNameElement = document.querySelector('.profile__name');
-const profileStatusElement = document.querySelector('.profile__status');
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-card-button');
 
@@ -48,14 +47,16 @@ const cardsContainer = new Section({
 }, '.cards');
 
 
+// creating user
+const profile = new Profile(settings.profileClassesAndSelectors);
+
 // creating popups
 const editProfilePopup = new FormPopup(
   settings.popupClassesAndSelectors,
   '.popup_content_edit-profile-form',
   settings.formClassesAndSelectors,
   (profileData) => {
-    profileNameElement.textContent = profileData.name;
-    profileStatusElement.textContent = profileData.status;
+    profile.setInfo(profileData)
 
     editProfilePopup.close();
   }
@@ -90,10 +91,7 @@ function cardImageClickHandler(card) {
 }
 
 function profileEditButtonClickHandler() {
-  editProfilePopup.setInputValues({
-    name: profileNameElement.textContent,
-    status: profileStatusElement.textContent
-  })
+  editProfilePopup.setInputValues( profile.getInfo() );
 
   editProfilePopup.open();
 }

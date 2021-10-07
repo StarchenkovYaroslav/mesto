@@ -27,3 +27,8 @@ export const pictureClassesAndSelectors = {
   imageSelector: '.picture__image',
   descriptionSelector: '.picture__description'
 }
+
+export const profileClassesAndSelectors = {
+  nameSelector: '.profile__name',
+  statusSelector: '.profile__status'
+}
