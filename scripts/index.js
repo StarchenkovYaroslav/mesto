@@ -1,5 +1,15 @@
-import * as constants from './constants.js';
-import * as settings from './settings.js';
+import {
+  initialCards,
+  addCardButton,
+  editProfileButton
+} from './constants.js';
+import {
+  formClassesAndSelectors,
+  cardClassesAndSelectors,
+  popupClassesAndSelectors,
+  pictureClassesAndSelectors,
+  profileClassesAndSelectors
+} from './settings.js';
 import Card from './Card.js';
 import Section from './Section.js';
 import FormPopup from './FormPopup.js';
@@ -9,13 +19,13 @@ import Profile from './Profile.js';
 
 // creating sections
 const cardsContainer = new Section({
-  items: constants.initialCards,
+  items: initialCards,
   render: cardsContainerRenderer
 }, '.cards');
 
 
 // creating user
-const profile = new Profile(settings.profileClassesAndSelectors);
+const profile = new Profile(profileClassesAndSelectors);
 
 
 // creating popups
@@ -34,23 +44,23 @@ const picturePopup = createPicturePopup('.popup_content_picture',);
 
 // defining functions
 function createCard(data) {
-  return new Card(settings.cardClassesAndSelectors, data, cardImageClickHandler);
+  return new Card(cardClassesAndSelectors, data, cardImageClickHandler);
 }
 
 function createFormPopup(elementSelector, formSubmitHandler) {
   return new FormPopup(
-    settings.popupClassesAndSelectors,
+    popupClassesAndSelectors,
     elementSelector,
-    settings.formClassesAndSelectors,
+    formClassesAndSelectors,
     formSubmitHandler
   )
 }
 
 function createPicturePopup(elementSelector) {
   return new PicturePopup(
-    settings.popupClassesAndSelectors,
+    popupClassesAndSelectors,
     elementSelector,
-    settings.pictureClassesAndSelectors
+    pictureClassesAndSelectors
   )
 }
 
@@ -88,9 +98,9 @@ function profileAddButtonClickHandler() {
 
 
 // adding listeners
-constants.editProfileButton.addEventListener('click', profileEditButtonClickHandler);
+editProfileButton.addEventListener('click', profileEditButtonClickHandler);
 
-constants.addCardButton.addEventListener('click', profileAddButtonClickHandler);
+addCardButton.addEventListener('click', profileAddButtonClickHandler);
 
 
 // initial filling cards
