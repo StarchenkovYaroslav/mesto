@@ -42,28 +42,17 @@ const addCardPopup = createFormPopup(
 const picturePopup = createPicturePopup('.popup_content_picture',);
 
 
-// defining functions
-function createCard(data) {
-  return new Card(cardClassesAndSelectors, data, cardImageClickHandler);
-}
+// adding listeners
+editProfileButton.addEventListener('click', editProfileButtonClickHandler);
 
-function createFormPopup(elementSelector, formSubmitHandler) {
-  return new FormPopup(
-    popupClassesAndSelectors,
-    elementSelector,
-    formClassesAndSelectors,
-    formSubmitHandler
-  )
-}
+addCardButton.addEventListener('click', addCardButtonClickHandler);
 
-function createPicturePopup(elementSelector) {
-  return new PicturePopup(
-    popupClassesAndSelectors,
-    elementSelector,
-    pictureClassesAndSelectors
-  )
-}
 
+// initial filling cards
+cardsContainer.renderItems();
+
+
+// defining handlers
 function cardsContainerRenderer(cardData) {
   cardsContainer.addElementToEnd( createCard(cardData).getElement() )
 }
@@ -97,11 +86,24 @@ function addCardButtonClickHandler() {
 }
 
 
-// adding listeners
-editProfileButton.addEventListener('click', editProfileButtonClickHandler);
+// defining utility functions
+function createCard(data) {
+  return new Card(cardClassesAndSelectors, data, cardImageClickHandler);
+}
 
-addCardButton.addEventListener('click', addCardButtonClickHandler);
+function createFormPopup(elementSelector, formSubmitHandler) {
+  return new FormPopup(
+    popupClassesAndSelectors,
+    elementSelector,
+    formClassesAndSelectors,
+    formSubmitHandler
+  )
+}
 
-
-// initial filling cards
-cardsContainer.renderItems();
+function createPicturePopup(elementSelector) {
+  return new PicturePopup(
+    popupClassesAndSelectors,
+    elementSelector,
+    pictureClassesAndSelectors
+  )
+}
