@@ -9,14 +9,13 @@
     >
     <meta name="keywords" content="фотографии, путешествия, интересные места">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="root">
     <div class="page">
       <header class="header">
         <a href="#">
           <img
-            src="./images/logo.svg"
+            src="<%=require('./images/logo.svg')%>"
             alt="Логотип Место"
             class="header__logo"
           >
@@ -26,7 +25,7 @@
         <section class="profile">
           <div class="profile__info">
             <img
-              src="./images/profile.jpg"
+              src="<%=require('./images/profile.jpg')%>"
               alt="Аватар"
               class="profile__avatar"
             >
@@ -158,6 +157,5 @@
       </article>
     </template>
 
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
