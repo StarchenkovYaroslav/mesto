@@ -2,19 +2,19 @@ import {
   initialCards,
   addCardButton,
   editProfileButton
-} from './constants.js';
+} from '../utils/constants.js';
 import {
   formClassesAndSelectors,
   cardClassesAndSelectors,
   popupClassesAndSelectors,
   pictureClassesAndSelectors,
   profileClassesAndSelectors
-} from './settings.js';
-import Card from './Card.js';
-import Section from './Section.js';
-import FormPopup from './FormPopup.js';
-import PicturePopup from './PicturePopup.js';
-import Profile from './Profile.js';
+} from '../utils/settings.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import FormPopup from '../components/FormPopup.js';
+import PicturePopup from '../components/PicturePopup.js';
+import Profile from '../components/Profile.js';
 
 
 // creating sections
