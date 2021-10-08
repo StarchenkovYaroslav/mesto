@@ -86,21 +86,21 @@ function cardImageClickHandler(card) {
   picturePopup.open(card);
 }
 
-function profileEditButtonClickHandler() {
+function editProfileButtonClickHandler() {
   editProfilePopup.setInputValues( profile.getInfo() );
 
   editProfilePopup.open();
 }
 
-function profileAddButtonClickHandler() {
+function addCardButtonClickHandler() {
   addCardPopup.open();
 }
 
 
 // adding listeners
-editProfileButton.addEventListener('click', profileEditButtonClickHandler);
+editProfileButton.addEventListener('click', editProfileButtonClickHandler);
 
-addCardButton.addEventListener('click', profileAddButtonClickHandler);
+addCardButton.addEventListener('click', addCardButtonClickHandler);
 
 
 // initial filling cards
