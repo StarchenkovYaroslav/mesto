@@ -1,14 +1,10 @@
 import * as constants from './constants.js';
+import * as settings from './settings.js';
 import Card from './Card.js';
 import Section from './Section.js';
 import FormPopup from './FormPopup.js';
 import PicturePopup from './PicturePopup.js';
 import Profile from './Profile.js';
-
-
-// getting elements from DOM
-const editProfileButton = document.querySelector('.profile__edit-button');
-const addCardButton = document.querySelector('.profile__add-card-button');
 
 
 // creating sections
@@ -19,7 +15,7 @@ const cardsContainer = new Section({
 
 
 // creating user
-const profile = new Profile(constants.profileClassesAndSelectors);
+const profile = new Profile(settings.profileClassesAndSelectors);
 
 
 // creating popups
@@ -38,23 +34,23 @@ const picturePopup = createPicturePopup('.popup_content_picture',);
 
 // defining functions
 function createCard(data) {
-  return new Card(constants.cardClassesAndSelectors, data, cardImageClickHandler);
+  return new Card(settings.cardClassesAndSelectors, data, cardImageClickHandler);
 }
 
 function createFormPopup(elementSelector, formSubmitHandler) {
   return new FormPopup(
-    constants.popupClassesAndSelectors,
+    settings.popupClassesAndSelectors,
     elementSelector,
-    constants.formClassesAndSelectors,
+    settings.formClassesAndSelectors,
     formSubmitHandler
   )
 }
 
 function createPicturePopup(elementSelector) {
   return new PicturePopup(
-    constants.popupClassesAndSelectors,
+    settings.popupClassesAndSelectors,
     elementSelector,
-    constants.pictureClassesAndSelectors
+    settings.pictureClassesAndSelectors
   )
 }
 
@@ -92,9 +88,9 @@ function profileAddButtonClickHandler() {
 
 
 // adding listeners
-editProfileButton.addEventListener('click', profileEditButtonClickHandler);
+constants.editProfileButton.addEventListener('click', profileEditButtonClickHandler);
 
-addCardButton.addEventListener('click', profileAddButtonClickHandler);
+constants.addCardButton.addEventListener('click', profileAddButtonClickHandler);
 
 
 // initial filling cards
