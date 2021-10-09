@@ -5,6 +5,8 @@ export default class FormValidator {
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
+    this._errorPostfix = settings.errorPostfix;
+
     this._form = form;
     this._inputs = Array.from( this._form.querySelectorAll(this._inputSelector) );
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
@@ -62,17 +64,25 @@ export default class FormValidator {
   }
 
   _getErrorElement(input) {
-    return this._form.querySelector(`.${input.id}-error`);
+    return this._form.querySelector(`.${input.id}${this._errorPostfix}`);
   }
 
   _toggleSubmitButtonState() {
     if (this._hasInvalidInput(this._inputs)) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.setAttribute('disabled', '');
+      this._deactivateSubmitButton();
     } else {
-      this._submitButton.classList.remove(this._inactiveButtonClass);
-      this._submitButton.removeAttribute('disabled');
+      this._activateSubmitButton();
     }
+  }
+
+  _activateSubmitButton() {
+    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._submitButton.removeAttribute('disabled');
+  }
+
+  _deactivateSubmitButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.setAttribute('disabled', '');
   }
 
   _hasInvalidInput(inputs) {

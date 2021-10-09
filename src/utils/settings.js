@@ -4,7 +4,8 @@ export const formClassesAndSelectors = {
   submitButtonSelector: '.form__button_type_submit',
   inactiveButtonClass: 'form__button_inactive',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
+  errorClass: 'form__input-error_active',
+  errorPostfix: '-error'
 };
 
 export const cardClassesAndSelectors = {
