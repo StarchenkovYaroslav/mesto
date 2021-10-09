@@ -46,7 +46,7 @@ export default class FormValidator {
   }
 
   _showInputError(input, validationMessage) {
-    const error = this._form.querySelector(`.${input.id}-error`);
+    const error = this._getErrorElement(input);
 
     error.textContent = validationMessage;
     error.classList.add(this._errorClass);
@@ -54,11 +54,15 @@ export default class FormValidator {
   }
 
   _hideInputError(input) {
-    const error = this._form.querySelector(`.${input.id}-error`);
+    const error = this._getErrorElement(input);
 
     error.textContent = '';
     error.classList.remove(this._errorClass);
     input.classList.remove(this._inputErrorClass);
+  }
+
+  _getErrorElement(input) {
+    return this._form.querySelector(`.${input.id}-error`);
   }
 
   _toggleSubmitButtonState() {
