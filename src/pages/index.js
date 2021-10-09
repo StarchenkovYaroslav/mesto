@@ -68,8 +68,6 @@ function editProfileFormSubmitHandler(profileData) {
 function addCardFormSubmitHandler(cardData) {
   cardsContainer.addElementToBegin( createCard(cardData).getElement() );
 
-  addCardPopup.resetForm();
-
   addCardPopup.close();
 }
 

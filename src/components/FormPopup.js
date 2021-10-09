@@ -16,23 +16,23 @@ export default class FormPopup extends Popup {
   }
 
   close() {
-    this.resetForm();
+    this._resetForm();
 
     super.close();
   }
 
   setInputValues(data) {
     this._formInputs.forEach(formInput => {
-      formInput.value = data[formInput.name];
+      if (formInput.name in data) {
+        formInput.value = data[formInput.name];
+      } else {
+        throw new Error('inputs and data dont match');
+      }
     });
 
     this._formValidator.resetValidation();
   }
 
-  resetForm() {
-    this._form.reset();
-    this._formValidator.resetValidation();
-  }
 
   _setEventListeners() {
     super._setEventListeners();
@@ -50,5 +50,10 @@ export default class FormPopup extends Popup {
     });
 
     return inputValues;
+  }
+
+  _resetForm() {
+    this._form.reset();
+    this._formValidator.resetValidation();
   }
 }
