@@ -8,16 +8,18 @@ export default class Popup {
     this._closeButtonClass = popupSettings.closeButtonClass;
     this._openedPopupClass = popupSettings.openedPopupClass;
 
+    this._handleKeydown = this._handleKeydown.bind(this);
+
     this._element = document.querySelector(elementSelector);
   }
 
   open() {
-    document.addEventListener('keydown', this._handleKeydown.bind(this));
+    document.addEventListener('keydown', this._handleKeydown);
     this._element.classList.add(this._openedPopupClass);
   }
 
   close() {
-    document.removeEventListener('keydown', this._handleKeydown.bind(this));
+    document.removeEventListener('keydown', this._handleKeydown);
     this._element.classList.remove(this._openedPopupClass);
   }
 
