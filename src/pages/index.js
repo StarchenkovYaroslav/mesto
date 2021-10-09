@@ -22,7 +22,7 @@ import Profile from '../components/Profile.js';
 // creating sections
 const cardsContainer = new Section({
   items: initialCards,
-  render: cardsContainerRenderer
+  render: renderCardsItems
 }, '.cards');
 
 
@@ -55,7 +55,7 @@ cardsContainer.renderItems();
 
 
 // defining handlers
-function cardsContainerRenderer(cardData) {
+function renderCardsItems(cardData) {
   cardsContainer.addElementToEnd( createCard(cardData).getElement() )
 }
 
