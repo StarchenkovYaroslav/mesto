@@ -1,5 +1,4 @@
 import Popup from './Popup.js';
-import FormValidator from './FormValidator.js';
 
 export default class FormPopup extends Popup {
   constructor(popupSettings, elementSelector, formSettings, handleFormSubmit, formValidator) {
