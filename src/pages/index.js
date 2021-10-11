@@ -40,13 +40,13 @@ const profile = new Profile(profileClassesAndSelectors);
 // creating popups
 const editProfilePopup = createFormPopup(
   '.popup_content_edit-profile-form',
-  editProfileFormSubmitHandler,
+  editProfileFormSubmit,
   editProfileFormValidator
 );
 
 const addCardPopup = createFormPopup(
   '.popup_content_add-card-form',
-  addCardFormSubmitHandler,
+  addCardFormSubmit,
   addCardFormValidator
 );
 
@@ -58,9 +58,9 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 // adding listeners
-editProfileButton.addEventListener('click', editProfileButtonClickHandler);
+editProfileButton.addEventListener('click', editProfileButtonClick);
 
-addCardButton.addEventListener('click', addCardButtonClickHandler);
+addCardButton.addEventListener('click', addCardButtonClick);
 
 
 // initial filling cards
@@ -72,29 +72,29 @@ function renderCardsItems(cardData) {
   cardsContainer.addElementToEnd( createCard(cardData).getElement() )
 }
 
-function editProfileFormSubmitHandler(profileData) {
+function editProfileFormSubmit(profileData) {
   profile.setInfo(profileData)
 
   editProfilePopup.close();
 }
 
-function addCardFormSubmitHandler(cardData) {
+function addCardFormSubmit(cardData) {
   cardsContainer.addElementToBegin( createCard(cardData).getElement() );
 
   addCardPopup.close();
 }
 
-function cardImageClickHandler(card) {
+function cardImageClick(card) {
   picturePopup.open(card);
 }
 
-function editProfileButtonClickHandler() {
+function editProfileButtonClick() {
   editProfilePopup.setInputValues( profile.getInfo() );
 
   editProfilePopup.open();
 }
 
-function addCardButtonClickHandler() {
+function addCardButtonClick() {
   addCardPopup.open();
 }
 
@@ -105,7 +105,7 @@ function createFormValidator(formElement) {
 }
 
 function createCard(data) {
-  return new Card(cardClassesAndSelectors, data, cardImageClickHandler);
+  return new Card(cardClassesAndSelectors, data, cardImageClick);
 }
 
 function createFormPopup(elementSelector, formSubmitHandler, formValidator) {
