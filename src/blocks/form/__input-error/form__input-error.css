@@ -3,6 +3,8 @@
   display: none;
   font-size: 12px;
   font-weight: normal;
+  left: 0;
   line-height: 1.25;
-  margin: 5px 0 0;
+  position: absolute;
+  top: calc(100% + 5px);
 }
