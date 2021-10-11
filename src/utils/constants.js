@@ -27,3 +27,6 @@ export const initialCards = [
 
 export const editProfileButton = document.querySelector('.profile__edit-button');
 export const addCardButton = document.querySelector('.profile__add-card-button');
+
+export const editProfileForm = document.querySelector('.form_action_edit-profile');
+export const addCardForm = document.querySelector('.form_action_add-card');

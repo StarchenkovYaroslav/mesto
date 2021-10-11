@@ -2,16 +2,16 @@ import Popup from './Popup.js';
 import FormValidator from './FormValidator.js';
 
 export default class FormPopup extends Popup {
-  constructor(popupSettings, elementSelector, formSettings, handleFormSubmit) {
+  constructor(popupSettings, elementSelector, formSettings, handleFormSubmit, formValidator) {
     super(popupSettings, elementSelector);
 
     this._form = this._element.querySelector(formSettings.formSelector);
     this._formInputs = this._form.querySelectorAll(formSettings.inputSelector);
-    this._formValidator = new FormValidator(formSettings, this._form);
+
+    this._formValidator = formValidator;
 
     this._handleFormSubmit = handleFormSubmit;
 
-    this._formValidator.enableValidation();
     this._setEventListeners();
   }
 

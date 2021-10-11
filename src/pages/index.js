@@ -3,7 +3,9 @@ import './index.css';
 import {
   initialCards,
   addCardButton,
-  editProfileButton
+  editProfileButton,
+  editProfileForm,
+  addCardForm
 } from '../utils/constants.js';
 import {
   formClassesAndSelectors,
@@ -17,7 +19,12 @@ import Section from '../components/Section.js';
 import FormPopup from '../components/FormPopup.js';
 import PicturePopup from '../components/PicturePopup.js';
 import Profile from '../components/Profile.js';
+import FormValidator from '../components/FormValidator.js';
 
+
+// creating validators
+const editProfileFormValidator = createFormValidator(editProfileForm);
+const addCardFormValidator = createFormValidator(addCardForm);
 
 // creating sections
 const cardsContainer = new Section({
@@ -33,16 +40,22 @@ const profile = new Profile(profileClassesAndSelectors);
 // creating popups
 const editProfilePopup = createFormPopup(
   '.popup_content_edit-profile-form',
-  editProfileFormSubmitHandler
+  editProfileFormSubmitHandler,
+  editProfileFormValidator
 );
 
 const addCardPopup = createFormPopup(
   '.popup_content_add-card-form',
-  addCardFormSubmitHandler
+  addCardFormSubmitHandler,
+  addCardFormValidator
 );
 
 const picturePopup = createPicturePopup('.popup_content_picture',);
 
+
+// enabling forms validation
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
 // adding listeners
 editProfileButton.addEventListener('click', editProfileButtonClickHandler);
@@ -87,16 +100,21 @@ function addCardButtonClickHandler() {
 
 
 // defining utility functions
+function createFormValidator(formElement) {
+  return new FormValidator(formClassesAndSelectors, formElement);
+}
+
 function createCard(data) {
   return new Card(cardClassesAndSelectors, data, cardImageClickHandler);
 }
 
-function createFormPopup(elementSelector, formSubmitHandler) {
+function createFormPopup(elementSelector, formSubmitHandler, formValidator) {
   return new FormPopup(
     popupClassesAndSelectors,
     elementSelector,
     formClassesAndSelectors,
-    formSubmitHandler
+    formSubmitHandler,
+    formValidator
   )
 }
 
