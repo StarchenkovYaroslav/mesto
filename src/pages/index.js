@@ -19,46 +19,47 @@ import FormValidator from '../components/FormValidator.js';
 
 
 // getting elements from DOM
-export const editProfileButton = document.querySelector('.profile__edit-button');
-export const addCardButton = document.querySelector('.profile__add-card-button');
+export const userInfoButton = document.querySelector('.profile__edit-button');
+export const newCardButton = document.querySelector('.profile__add-card-button');
 
-export const editProfileForm = document.querySelector('.form_action_edit-profile');
-export const addCardForm = document.querySelector('.form_action_add-card');
+export const userInfoForm = document.querySelector('.form_action_edit-profile');
+export const newCardForm = document.querySelector('.form_action_add-card');
 
 
 // creating validators
-const editProfileFormValidator = new FormValidator(formClassesAndSelectors, editProfileForm);
-const addCardFormValidator = new FormValidator(formClassesAndSelectors, addCardForm);
+const userInfoFormValidator = new FormValidator(formClassesAndSelectors, userInfoForm);
+const newCardFormValidator = new FormValidator(formClassesAndSelectors, newCardForm);
+
 
 // creating sections
 const cardsContainer = new Section({
   items: initialCards,
-  render: renderCardsItems
+  render: renderCard
 }, '.cards');
 
 
-// creating user
-const profile = new UserInfo(profileClassesAndSelectors);
+// creating userInfo
+const userInfo = new UserInfo(profileClassesAndSelectors);
 
 
 // creating popups
-const editProfilePopup = new PopupWithForm(
+const userInfoPopup = new PopupWithForm(
   popupClassesAndSelectors,
   '.popup_content_edit-profile-form',
   formClassesAndSelectors,
-  editProfileFormSubmit,
-  editProfileFormValidator
+  userInfoFormSubmit,
+  userInfoFormValidator
 );
 
-const addCardPopup = new PopupWithForm (
+const newCardPopup = new PopupWithForm (
   popupClassesAndSelectors,
   '.popup_content_add-card-form',
   formClassesAndSelectors,
-  addCardFormSubmit,
-  addCardFormValidator
+  newCardFormSubmit,
+  newCardFormValidator
 );
 
-const picturePopup = new PopupWithImage(
+const cardImagePopup = new PopupWithImage(
   popupClassesAndSelectors,
   '.popup_content_picture',
   pictureClassesAndSelectors
@@ -66,14 +67,14 @@ const picturePopup = new PopupWithImage(
 
 
 // enabling forms validation
-editProfileFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
+userInfoFormValidator.enableValidation();
+newCardFormValidator.enableValidation();
 
 
 // adding listeners
-editProfileButton.addEventListener('click', editProfileButtonClick);
+userInfoButton.addEventListener('click', userInfoButtonClick);
 
-addCardButton.addEventListener('click', addCardButtonClick);
+newCardButton.addEventListener('click', newCardButtonClick);
 
 
 // initial filling cards
@@ -81,34 +82,34 @@ cardsContainer.renderItems();
 
 
 // defining handlers
-function renderCardsItems(cardData) {
+function renderCard(cardData) {
   cardsContainer.addElementToEnd( createCardElement(cardData) )
 }
 
-function editProfileFormSubmit(profileData) {
-  profile.setInfo(profileData)
+function userInfoFormSubmit(profileData) {
+  userInfo.setInfo(profileData)
 
-  editProfilePopup.close();
+  userInfoPopup.close();
 }
 
-function addCardFormSubmit(cardData) {
+function newCardFormSubmit(cardData) {
   cardsContainer.addElementToBegin( createCardElement(cardData) );
 
-  addCardPopup.close();
+  newCardPopup.close();
 }
 
 function cardImageClick(card) {
-  picturePopup.open(card);
+  cardImagePopup.open(card);
 }
 
-function editProfileButtonClick() {
-  editProfilePopup.setInputValues( profile.getInfo() );
+function userInfoButtonClick() {
+  userInfoPopup.setInputValues( userInfo.getInfo() );
 
-  editProfilePopup.open();
+  userInfoPopup.open();
 }
 
-function addCardButtonClick() {
-  addCardPopup.open();
+function newCardButtonClick() {
+  newCardPopup.open();
 }
 
 
