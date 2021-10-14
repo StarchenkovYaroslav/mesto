@@ -83,7 +83,7 @@ cardsContainer.renderItems();
 
 // defining handlers
 function renderCard(cardData) {
-  cardsContainer.addElementToEnd( createCardElement(cardData) )
+  cardsContainer.addElementToEnd(createCardElement(cardData))
 }
 
 function userInfoFormSubmit(profileData) {
@@ -93,7 +93,7 @@ function userInfoFormSubmit(profileData) {
 }
 
 function newCardFormSubmit(cardData) {
-  cardsContainer.addElementToBegin( createCardElement(cardData) );
+  cardsContainer.addElementToBegin(createCardElement(cardData));
 
   newCardPopup.close();
 }
@@ -103,7 +103,7 @@ function cardImageClick(card) {
 }
 
 function userInfoButtonClick() {
-  userInfoPopup.setInputValues( userInfo.getInfo() );
+  userInfoPopup.setInputValues(userInfo.getInfo());
 
   userInfoPopup.open();
 }
