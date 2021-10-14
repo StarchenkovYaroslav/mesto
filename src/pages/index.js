@@ -12,9 +12,9 @@ import {
 } from '../utils/settings.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
-import FormPopup from '../components/FormPopup.js';
-import PicturePopup from '../components/PicturePopup.js';
-import Profile from '../components/Profile.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 
 
@@ -38,11 +38,11 @@ const cardsContainer = new Section({
 
 
 // creating user
-const profile = new Profile(profileClassesAndSelectors);
+const profile = new UserInfo(profileClassesAndSelectors);
 
 
 // creating popups
-const editProfilePopup = new FormPopup(
+const editProfilePopup = new PopupWithForm(
   popupClassesAndSelectors,
   '.popup_content_edit-profile-form',
   formClassesAndSelectors,
@@ -50,7 +50,7 @@ const editProfilePopup = new FormPopup(
   editProfileFormValidator
 );
 
-const addCardPopup = new FormPopup (
+const addCardPopup = new PopupWithForm (
   popupClassesAndSelectors,
   '.popup_content_add-card-form',
   formClassesAndSelectors,
@@ -58,7 +58,7 @@ const addCardPopup = new FormPopup (
   addCardFormValidator
 );
 
-const picturePopup = new PicturePopup(
+const picturePopup = new PopupWithImage(
   popupClassesAndSelectors,
   '.popup_content_picture',
   pictureClassesAndSelectors
