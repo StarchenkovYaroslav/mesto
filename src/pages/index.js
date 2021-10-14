@@ -1,11 +1,7 @@
 import './index.css';
 
 import {
-  initialCards,
-  addCardButton,
-  editProfileButton,
-  editProfileForm,
-  addCardForm
+  initialCards
 } from '../utils/constants.js';
 import {
   formClassesAndSelectors,
@@ -20,6 +16,14 @@ import FormPopup from '../components/FormPopup.js';
 import PicturePopup from '../components/PicturePopup.js';
 import Profile from '../components/Profile.js';
 import FormValidator from '../components/FormValidator.js';
+
+
+// getting elements from DOM
+export const editProfileButton = document.querySelector('.profile__edit-button');
+export const addCardButton = document.querySelector('.profile__add-card-button');
+
+export const editProfileForm = document.querySelector('.form_action_edit-profile');
+export const addCardForm = document.querySelector('.form_action_add-card');
 
 
 // creating validators
