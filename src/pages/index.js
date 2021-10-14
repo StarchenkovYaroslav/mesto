@@ -23,8 +23,8 @@ import FormValidator from '../components/FormValidator.js';
 
 
 // creating validators
-const editProfileFormValidator = createFormValidator(editProfileForm);
-const addCardFormValidator = createFormValidator(addCardForm);
+const editProfileFormValidator = new FormValidator(formClassesAndSelectors, editProfileForm);
+const addCardFormValidator = new FormValidator(formClassesAndSelectors, addCardForm);
 
 // creating sections
 const cardsContainer = new Section({
@@ -38,24 +38,33 @@ const profile = new Profile(profileClassesAndSelectors);
 
 
 // creating popups
-const editProfilePopup = createFormPopup(
+const editProfilePopup = new FormPopup(
+  popupClassesAndSelectors,
   '.popup_content_edit-profile-form',
+  formClassesAndSelectors,
   editProfileFormSubmit,
   editProfileFormValidator
 );
 
-const addCardPopup = createFormPopup(
+const addCardPopup = new FormPopup (
+  popupClassesAndSelectors,
   '.popup_content_add-card-form',
+  formClassesAndSelectors,
   addCardFormSubmit,
   addCardFormValidator
 );
 
-const picturePopup = createPicturePopup('.popup_content_picture',);
+const picturePopup = new PicturePopup(
+  popupClassesAndSelectors,
+  '.popup_content_picture',
+  pictureClassesAndSelectors
+);
 
 
 // enabling forms validation
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+
 
 // adding listeners
 editProfileButton.addEventListener('click', editProfileButtonClick);
@@ -100,28 +109,6 @@ function addCardButtonClick() {
 
 
 // defining utility functions
-function createFormValidator(formElement) {
-  return new FormValidator(formClassesAndSelectors, formElement);
-}
-
 function createCard(data) {
   return new Card(cardClassesAndSelectors, data, cardImageClick);
-}
-
-function createFormPopup(elementSelector, formSubmitHandler, formValidator) {
-  return new FormPopup(
-    popupClassesAndSelectors,
-    elementSelector,
-    formClassesAndSelectors,
-    formSubmitHandler,
-    formValidator
-  )
-}
-
-function createPicturePopup(elementSelector) {
-  return new PicturePopup(
-    popupClassesAndSelectors,
-    elementSelector,
-    pictureClassesAndSelectors
-  )
 }
