@@ -78,7 +78,7 @@ cardsContainer.renderItems();
 
 // defining handlers
 function renderCardsItems(cardData) {
-  cardsContainer.addElementToEnd( createCard(cardData).getElement() )
+  cardsContainer.addElementToEnd( createCardElement(cardData) )
 }
 
 function editProfileFormSubmit(profileData) {
@@ -88,7 +88,7 @@ function editProfileFormSubmit(profileData) {
 }
 
 function addCardFormSubmit(cardData) {
-  cardsContainer.addElementToBegin( createCard(cardData).getElement() );
+  cardsContainer.addElementToBegin( createCardElement(cardData) );
 
   addCardPopup.close();
 }
@@ -109,6 +109,6 @@ function addCardButtonClick() {
 
 
 // defining utility functions
-function createCard(data) {
-  return new Card(cardClassesAndSelectors, data, cardImageClick);
+function createCardElement(data) {
+  return new Card(cardClassesAndSelectors, data, cardImageClick).getElement();
 }
