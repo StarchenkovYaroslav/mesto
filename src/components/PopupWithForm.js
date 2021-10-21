@@ -15,7 +15,7 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    this._resetForm();
+    this._clearInputValues();
 
     super.close();
   }
@@ -51,7 +51,7 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
-  _resetForm() {
+  _clearInputValues() {
     this._form.reset();
     this._formValidator.resetValidation();
   }
