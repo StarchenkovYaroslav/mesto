@@ -1,11 +1,11 @@
 export default class Card {
-  constructor(settings, data, handleImageClick) {
-    this._templateSelector = settings.templateSelector;
+  constructor(settings, templateSelector, data, handleImageClick) {
+    this._templateSelector = templateSelector;
+
     this._elementSelector = settings.elementSelector;
     this._imageSelector = settings.imageSelector;
     this._titleSelector = settings.titleSelector;
     this._likeButtonSelector = settings.likeButtonSelector;
-    this._deleteButtonSelector = settings.deleteButtonSelector;
     this._activeLikeButtonClass = settings.activeLikeButtonClass;
 
     this._imageUrl = data.imageUrl;
@@ -17,9 +17,6 @@ export default class Card {
     this._imageElement = this._element.querySelector(this._imageSelector);
     this._titleElement = this._element.querySelector(this._titleSelector);
     this._likeButtonElement = this._element.querySelector(this._likeButtonSelector);
-    this._deleteButtonElement = this._element.querySelector(this._deleteButtonSelector);
-
-    this._fillElement();
   }
 
   get imageUrl() {
@@ -31,6 +28,8 @@ export default class Card {
   }
 
   getElement() {
+    this._fillElement();
+
     return this._element;
   }
 
@@ -52,18 +51,10 @@ export default class Card {
     this._likeButtonElement.addEventListener('click', () => {
       this._handleLikeButtonClick();
     });
-    this._deleteButtonElement.addEventListener('click', () => {
-      this._handleDeleteButtonClick();
-    });
   }
 
   _handleLikeButtonClick() {
     this._likeButtonElement.classList.toggle(this._activeLikeButtonClass);
-  }
-
-  _handleDeleteButtonClick() {
-    this._element.remove();
-    this._element = null;
   }
 
   _getEmptyElement() {

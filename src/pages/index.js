@@ -8,7 +8,9 @@ import {
   cardClassesAndSelectors,
   popupClassesAndSelectors,
   pictureClassesAndSelectors,
-  profileClassesAndSelectors
+  profileClassesAndSelectors,
+  userCardTemplateSelector,
+  othersCardTemplateSelector
 } from '../utils/settings.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -16,6 +18,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import CardOfUser from '../components/CardOfUser.js';
 
 
 // getting elements from DOM
@@ -115,5 +118,5 @@ function newCardButtonClick() {
 
 // defining utility functions
 function createCardElement(data) {
-  return new Card(cardClassesAndSelectors, data, cardImageClick).getElement();
+  return new CardOfUser(cardClassesAndSelectors, userCardTemplateSelector, data, cardImageClick).getElement();
 }

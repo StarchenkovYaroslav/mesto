@@ -9,7 +9,6 @@ export const formClassesAndSelectors = {
 };
 
 export const cardClassesAndSelectors = {
-  templateSelector: '#card-template',
   elementSelector: '.card',
   imageSelector: '.card__image',
   titleSelector: '.card__title',
@@ -33,3 +32,7 @@ export const profileClassesAndSelectors = {
   nameSelector: '.profile__name',
   statusSelector: '.profile__status'
 }
+
+export const userCardTemplateSelector = '#user-card-template';
+
+export const othersCardTemplateSelector = '#others-card-template';
