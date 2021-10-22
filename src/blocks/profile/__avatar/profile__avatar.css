@@ -2,16 +2,10 @@
   border-radius: 50%;
   display: block;
   height: 120px;
-  margin: 0 30px 0 0;
   object-fit: cover;
   object-position: center;
+  position: relative;
   width: 120px;
-}
-
-@media (max-width: 767px) {
-  .profile__avatar {
-    margin-right: 0;
-    margin-bottom: 27px;
-  }
+  z-index: -1;
 }
 

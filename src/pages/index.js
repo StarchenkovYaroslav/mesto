@@ -25,14 +25,19 @@ import PopupForConfirmation from '../components/PopupForConfirmation.js';
 // getting elements from DOM
 const userInfoButton = document.querySelector('.profile__edit-button');
 const newCardButton = document.querySelector('.profile__add-card-button');
+const avatarButton = document.querySelector('.profile__avatar-button');
 
 const userInfoForm = document.querySelector('.form_action_edit-profile');
 const newCardForm = document.querySelector('.form_action_add-card');
+const avatarForm = document.querySelector('.form_action_change-avatar');
+
+const avatarElement = document.querySelector('.profile__avatar');
 
 
 // creating validators
 const userInfoFormValidator = new FormValidator(formClassesAndSelectors, userInfoForm);
 const newCardFormValidator = new FormValidator(formClassesAndSelectors, newCardForm);
+const avatarFormValidator = new FormValidator(formClassesAndSelectors, avatarForm);
 
 
 // creating sections
@@ -63,6 +68,14 @@ const newCardPopup = new PopupWithForm (
   newCardFormValidator
 );
 
+const avatarPopup = new PopupWithForm(
+  popupClassesAndSelectors,
+  '.popup_content_change-avatar-form',
+  formClassesAndSelectors,
+  avatarFormSubmit,
+  avatarFormValidator
+);
+
 const cardOffPopup = new PopupForConfirmation(
   popupClassesAndSelectors,
   '.popup_content_confirm-delete-card-form',
@@ -80,12 +93,13 @@ const cardImagePopup = new PopupWithImage(
 // enabling forms validation
 userInfoFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 
 // adding listeners
 userInfoButton.addEventListener('click', userInfoButtonClick);
-
 newCardButton.addEventListener('click', newCardButtonClick);
+avatarButton.addEventListener('click', avatarButtonClick);
 
 
 // initial filling cards
@@ -101,6 +115,16 @@ function confirmCardDeletion(card) {
   card.delete();
 
   cardOffPopup.close();
+}
+
+function avatarButtonClick() {
+  avatarPopup.open();
+}
+
+function avatarFormSubmit(avatarData) {
+  avatarElement.src = avatarData.imageUrl;
+
+  avatarPopup.close();
 }
 
 function userInfoFormSubmit(profileData) {

@@ -24,11 +24,13 @@
       <main class="content section">
         <section class="profile">
           <div class="profile__info">
-            <img
-              src="<%=require('./images/profile.jpg')%>"
-              alt="Аватар"
-              class="profile__avatar"
-            >
+            <button class="profile__avatar-button">
+              <img
+                src="<%=require('./images/profile.jpg')%>"
+                alt="Аватар"
+                class="profile__avatar"
+              >
+            </button>
             <div class="profile__text">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__status">Исследователь океана</p>
@@ -77,6 +79,38 @@
                   class="form__input form__input_data_profile-status"
                 >
                 <span class="profile-status-input-error form__input-error"></span>
+              </label>
+            </fieldset>
+            <button
+              type="submit"
+              class="form__button form__button_type_submit"
+            >
+              Сохранить
+            </button>
+          </form>
+          <button class="popup__close-button" type="button"></button>
+        </div>
+      </div>
+
+      <div class="popup popup_content_change-avatar-form">
+        <div class="popup__container">
+          <form
+            name="change-avatar"
+            class="form form_action_change-avatar"
+            novalidate
+          >
+            <h2 class="form__title">Обновить аватар</h2>
+            <fieldset class="form__input-container">
+              <label class="form__field">
+                <input
+                  id="avatar-image-url-input"
+                  type="url"
+                  name="imageUrl"
+                  placeholder="Ссылка на аватар"
+                  required
+                  class="form__input form__input_data_profile-name"
+                >
+                <span class="avatar-image-url-input-error form__input-error"></span>
               </label>
             </fieldset>
             <button
