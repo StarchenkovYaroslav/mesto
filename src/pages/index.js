@@ -19,14 +19,15 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import CardOfUser from '../components/CardOfUser.js';
+import PopupForConfirmation from '../components/PopupForConfirmation.js';
 
 
 // getting elements from DOM
-export const userInfoButton = document.querySelector('.profile__edit-button');
-export const newCardButton = document.querySelector('.profile__add-card-button');
+const userInfoButton = document.querySelector('.profile__edit-button');
+const newCardButton = document.querySelector('.profile__add-card-button');
 
-export const userInfoForm = document.querySelector('.form_action_edit-profile');
-export const newCardForm = document.querySelector('.form_action_add-card');
+const userInfoForm = document.querySelector('.form_action_edit-profile');
+const newCardForm = document.querySelector('.form_action_add-card');
 
 
 // creating validators
@@ -62,6 +63,13 @@ const newCardPopup = new PopupWithForm (
   newCardFormValidator
 );
 
+const cardOffPopup = new PopupForConfirmation(
+  popupClassesAndSelectors,
+  '.popup_content_confirm-delete-card-form',
+  formClassesAndSelectors,
+  confirmCardDeletion
+);
+
 const cardImagePopup = new PopupWithImage(
   popupClassesAndSelectors,
   '.popup_content_picture',
@@ -89,6 +97,12 @@ function renderCard(cardData) {
   cardsContainer.addElementToEnd(createCardElement(cardData))
 }
 
+function confirmCardDeletion(card) {
+  card.delete();
+
+  cardOffPopup.close();
+}
+
 function userInfoFormSubmit(profileData) {
   userInfo.setInfo(profileData)
 
@@ -105,6 +119,10 @@ function cardImageClick(card) {
   cardImagePopup.open(card);
 }
 
+function cardDeleteButtonClick(card) {
+  cardOffPopup.open(card);
+}
+
 function userInfoButtonClick() {
   userInfoPopup.setInputValues(userInfo.getInfo());
 
@@ -118,5 +136,8 @@ function newCardButtonClick() {
 
 // defining utility functions
 function createCardElement(data) {
-  return new CardOfUser(cardClassesAndSelectors, userCardTemplateSelector, data, cardImageClick).getElement();
+  return new CardOfUser(cardClassesAndSelectors,
+    userCardTemplateSelector,
+    data, cardImageClick,
+    cardDeleteButtonClick).getElement();
 }
