@@ -44,30 +44,38 @@ const api = new Api(apiSettings);
 // creating userInfo
 const userInfo = new UserInfo(profileClassesAndSelectors);
 
+
+// creating sections
+const cardsContainer = new Section(renderCard, '.cards');
+
+
 // getting user from server
+let user;
+
 api.getUser()
-  .then(user => {
-    avatarElement.src = user.avatar;
+  .then(userData => {
+    user = userData;
+
+    avatarElement.src = userData.avatar;
 
     userInfo.setInfo({
-      name: user.name,
-      status: user.about
+      name: userData.name,
+      status: userData.about
     })
   });
+
+
+// getting initial card from server
+api.getInitialCards()
+  .then(initialCards => {
+    cardsContainer.renderItems(initialCards);
+  })
 
 
 // creating validators
 const userInfoFormValidator = new FormValidator(formClassesAndSelectors, userInfoForm);
 const newCardFormValidator = new FormValidator(formClassesAndSelectors, newCardForm);
 const avatarFormValidator = new FormValidator(formClassesAndSelectors, avatarForm);
-
-
-// creating sections
-const cardsContainer = new Section({
-  items: initialCards,
-  render: renderCard
-}, '.cards');
-
 
 
 // creating popups
@@ -121,13 +129,9 @@ newCardButton.addEventListener('click', newCardButtonClick);
 avatarButton.addEventListener('click', avatarButtonClick);
 
 
-// initial filling cards
-cardsContainer.renderItems();
-
-
 // defining handlers
 function renderCard(cardData) {
-  cardsContainer.addElementToEnd(createCardElement(cardData))
+  cardsContainer.addElementToEnd(createCardElement(cardData, user))
 }
 
 function confirmCardDeletion(card) {
@@ -153,7 +157,7 @@ function userInfoFormSubmit(profileData) {
 }
 
 function newCardFormSubmit(cardData) {
-  cardsContainer.addElementToBegin(createCardElement(cardData));
+  cardsContainer.addElementToBegin(createCardElement(cardData, user));
 
   newCardPopup.close();
 }
@@ -178,9 +182,23 @@ function newCardButtonClick() {
 
 
 // defining utility functions
-function createCardElement(data) {
-  return new CardOfUser(cardClassesAndSelectors,
-    userCardTemplateSelector,
-    data, cardImageClick,
-    cardDeleteButtonClick).getElement();
+function createCardElement(data, user) {
+  if (data.owner._id === user._id) {
+    return new CardOfUser(
+      cardClassesAndSelectors,
+      userCardTemplateSelector,
+      data,
+      cardImageClick,
+      user,
+      cardDeleteButtonClick,
+    ).getElement();
+  } else {
+    return new Card(
+      cardClassesAndSelectors,
+      othersCardTemplateSelector,
+      data,
+      cardImageClick,
+      user,
+    ).getElement();
+  }
 }

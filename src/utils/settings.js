@@ -1,8 +1,8 @@
 export const apiSettings = {
   token: '0b40a95f-9332-4356-a732-eb5ba165765e',
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-29',
-
-  userRequest: '/users/me'
+  userRequest: '/users/me',
+  initialCardsRequest: '/cards'
 }
 export const formClassesAndSelectors = {
   formSelector: '.form',
@@ -19,6 +19,7 @@ export const cardClassesAndSelectors = {
   imageSelector: '.card__image',
   titleSelector: '.card__title',
   likeButtonSelector: '.card__like-button',
+  likeCounterSelector: '.card__like-counter',
   deleteButtonSelector: '.card__delete-button',
   activeLikeButtonClass: 'card__like-button_active'
 };

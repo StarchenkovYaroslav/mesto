@@ -17,9 +17,9 @@ export default class PopupWithImage extends Popup{
   }
 
   _setElementValues(card) {
-    this._imageElement.src = card.imageUrl;
-    this._imageElement.alt = card.title;
+    this._imageElement.src = card.link;
+    this._imageElement.alt = card.name;
 
-    this._descriptionElement.textContent = card.title;
+    this._descriptionElement.textContent = card.name;
   }
 }
