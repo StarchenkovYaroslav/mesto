@@ -4,6 +4,7 @@ import {
   initialCards
 } from '../utils/constants.js';
 import {
+  apiSettings,
   formClassesAndSelectors,
   cardClassesAndSelectors,
   popupClassesAndSelectors,
@@ -20,6 +21,8 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import CardOfUser from '../components/CardOfUser.js';
 import PopupForConfirmation from '../components/PopupForConfirmation.js';
+import Api from '../components/Api.js';
+import * as url from "url";
 
 
 // getting elements from DOM
@@ -34,6 +37,25 @@ const avatarForm = document.querySelector('.form_action_change-avatar');
 const avatarElement = document.querySelector('.profile__avatar');
 
 
+// creating api
+const api = new Api(apiSettings);
+
+
+// creating userInfo
+const userInfo = new UserInfo(profileClassesAndSelectors);
+
+// getting user from server
+api.getUser()
+  .then(user => {
+    avatarElement.src = user.avatar;
+
+    userInfo.setInfo({
+      name: user.name,
+      status: user.about
+    })
+  });
+
+
 // creating validators
 const userInfoFormValidator = new FormValidator(formClassesAndSelectors, userInfoForm);
 const newCardFormValidator = new FormValidator(formClassesAndSelectors, newCardForm);
@@ -46,9 +68,6 @@ const cardsContainer = new Section({
   render: renderCard
 }, '.cards');
 
-
-// creating userInfo
-const userInfo = new UserInfo(profileClassesAndSelectors);
 
 
 // creating popups
