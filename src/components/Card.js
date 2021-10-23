@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(settings, templateSelector, data, handleImageClick, user) {
+  constructor(settings, templateSelector, data, handlers, user) {
     this._templateSelector = templateSelector;
 
     this._elementSelector = settings.elementSelector;
@@ -9,14 +9,20 @@ export default class Card {
     this._likeCounterSelector = settings.likeCounterSelector;
     this._activeLikeButtonClass = settings.activeLikeButtonClass;
 
+    this._id = data._id;
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
     this._owner = data.owner;
 
-    this._handleImageClick = handleImageClick;
-
     this._user = user;
+
+    this._isLiked = false;
+    this._checkLikeByUser();
+    this._likeCounter = this._likes.length;
+
+    this._handleImageClick = handlers.handleImageClick;
+    this._handleLikeButtonClick = handlers.handleLikeButtonClick;
 
     this._element = this._getEmptyElement();
     this._imageElement = this._element.querySelector(this._imageSelector);
@@ -33,28 +39,62 @@ export default class Card {
     return this._name;
   }
 
+  get isLiked() {
+    return this._isLiked;
+  }
+
+  like(card) {
+    this._isLiked = true;
+
+    this._likes = card.likes;
+    this._updateLikeCounter();
+
+    this._likeButtonElement.classList.add(this._activeLikeButtonClass);
+  }
+
+  dislike(card) {
+    this._isLiked = false;
+
+    this._likes = card.likes;
+    this._updateLikeCounter();
+
+    this._likeButtonElement.classList.remove(this._activeLikeButtonClass);
+  }
+
   getElement() {
     this._fillElement();
 
     return this._element;
   }
 
+  _checkLikeByUser() {
+    this._likes.forEach(user => {
+      if (user._id === this._user._id) {
+        this._isLiked = true;
+      }
+    })
+  }
+
+  _updateLikeCounter() {
+    this._likeCounter = this._likes.length;
+
+    this._likeCounterElement.textContent = this._likeCounter;
+  }
+
   _fillElement() {
     this._setElementsValues();
     this._setEventListeners();
-
-    this._likes.forEach(user => {
-      if (user._id === this._owner.id) {
-        this._handleLikeButtonClick();
-      }
-    })
   }
 
   _setElementsValues() {
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._titleElement.textContent = this._name;
-    this._likeCounterElement.textContent = this._likes.length;
+    this._likeCounterElement.textContent = this._likeCounter;
+
+    if (this._isLiked) {
+      this._likeButtonElement.classList.add(this._activeLikeButtonClass);;
+    }
   }
 
   _setEventListeners() {
@@ -62,12 +102,8 @@ export default class Card {
       this._handleImageClick(this);
     });
     this._likeButtonElement.addEventListener('click', () => {
-      this._handleLikeButtonClick();
+      this._handleLikeButtonClick(this);
     });
-  }
-
-  _handleLikeButtonClick() {
-    this._likeButtonElement.classList.toggle(this._activeLikeButtonClass);
   }
 
   _getEmptyElement() {

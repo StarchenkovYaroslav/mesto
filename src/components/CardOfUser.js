@@ -1,8 +1,8 @@
 import Card from './Card.js';
 
 export default class CardOfUser extends Card {
-  constructor(settings, templateSelector, data, handleImageClick, user, handleDeleteClick) {
-    super(settings, templateSelector, data, handleImageClick, user);
+  constructor(settings, templateSelector, data, handlers, user, handleDeleteClick) {
+    super(settings, templateSelector, data, handlers, user);
 
     this._deleteButtonElement = this._element.querySelector(settings.deleteButtonSelector);
 

@@ -3,7 +3,8 @@ export const apiSettings = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-29',
   userRequest: '/users/me',
   initialCardsRequest: '/cards',
-  newCardRequest: '/cards'
+  newCardRequest: '/cards',
+  cardLikeRequest: '/cards/likes/'
 }
 export const formClassesAndSelectors = {
   formSelector: '.form',

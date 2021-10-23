@@ -172,6 +172,20 @@ function cardDeleteButtonClick(card) {
   cardOffPopup.open(card);
 }
 
+function cardLikeButtonClick(card) {
+  if (!card.isLiked) {
+    api.likeCard(card)
+      .then(cardData => {
+        card.like(cardData);
+      })
+  } else {
+    api.dislikeCard(card)
+      .then(cardData => {
+        card.dislike(cardData);
+      })
+  }
+}
+
 function userInfoButtonClick() {
   userInfoPopup.setInputValues(userInfo.getInfo());
 
@@ -190,7 +204,10 @@ function createCardElement(data, user) {
       cardClassesAndSelectors,
       userCardTemplateSelector,
       data,
-      cardImageClick,
+      {
+        handleImageClick: cardImageClick,
+        handleLikeButtonClick: cardLikeButtonClick
+      },
       user,
       cardDeleteButtonClick,
     ).getElement();
@@ -199,7 +216,10 @@ function createCardElement(data, user) {
       cardClassesAndSelectors,
       othersCardTemplateSelector,
       data,
-      cardImageClick,
+      {
+        handleImageClick: cardImageClick,
+        handleLikeButtonClick: cardLikeButtonClick
+      },
       user,
     ).getElement();
   }
