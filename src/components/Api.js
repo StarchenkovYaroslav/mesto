@@ -7,6 +7,7 @@ export default class Api {
 
     this._userRequest = settings.userRequest;
     this._initialCardsRequest = settings.initialCardsRequest;
+    this._newCardRequest = settings.newCardRequest;
   }
 
   getUser() {
@@ -47,6 +48,30 @@ export default class Api {
       })
       .then(initialCards => {
         return initialCards;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  addCard(cardData) {
+    return fetch(this._baseUrl + this._newCardRequest, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cardData)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return Promise.reject(`error: ${response.status}`);
+      })
+      .then(cardData => {
+        return cardData;
       })
       .catch(error => {
         console.log(error);

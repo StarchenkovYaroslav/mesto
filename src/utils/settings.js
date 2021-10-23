@@ -2,7 +2,8 @@ export const apiSettings = {
   token: '0b40a95f-9332-4356-a732-eb5ba165765e',
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-29',
   userRequest: '/users/me',
-  initialCardsRequest: '/cards'
+  initialCardsRequest: '/cards',
+  newCardRequest: '/cards'
 }
 export const formClassesAndSelectors = {
   formSelector: '.form',

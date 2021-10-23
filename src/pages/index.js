@@ -157,9 +157,11 @@ function userInfoFormSubmit(profileData) {
 }
 
 function newCardFormSubmit(cardData) {
-  cardsContainer.addElementToBegin(createCardElement(cardData, user));
-
-  newCardPopup.close();
+  api.addCard(cardData)
+    .then(cardData => {
+      cardsContainer.addElementToBegin(createCardElement(cardData, user));
+      newCardPopup.close();
+    })
 }
 
 function cardImageClick(card) {
