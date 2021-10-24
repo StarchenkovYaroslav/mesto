@@ -200,7 +200,7 @@ function cardLikeButtonClick(card) {
 }
 
 function userInfoButtonClick() {
-  userInfoPopup.setInputValues(userInfo.getInfo());
+  userInfoPopup.setInputValues(user);
 
   userInfoPopup.open();
 }
