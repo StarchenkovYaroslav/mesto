@@ -48,3 +48,5 @@ export const profileClassesAndSelectors = {
 export const userCardTemplateSelector = '#user-card-template';
 
 export const othersCardTemplateSelector = '#others-card-template';
+
+export const loadingMessage = 'Сохранение...';

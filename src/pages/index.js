@@ -11,7 +11,8 @@ import {
   pictureClassesAndSelectors,
   profileClassesAndSelectors,
   userCardTemplateSelector,
-  othersCardTemplateSelector
+  othersCardTemplateSelector,
+  loadingMessage
 } from '../utils/settings.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -84,7 +85,8 @@ const userInfoPopup = new PopupWithForm(
   '.popup_content_edit-profile-form',
   formClassesAndSelectors,
   userInfoFormSubmit,
-  userInfoFormValidator
+  userInfoFormValidator,
+  loadingMessage
 );
 
 const newCardPopup = new PopupWithForm (
@@ -92,7 +94,8 @@ const newCardPopup = new PopupWithForm (
   '.popup_content_add-card-form',
   formClassesAndSelectors,
   newCardFormSubmit,
-  newCardFormValidator
+  newCardFormValidator,
+  loadingMessage
 );
 
 const avatarPopup = new PopupWithForm(
@@ -100,7 +103,8 @@ const avatarPopup = new PopupWithForm(
   '.popup_content_change-avatar-form',
   formClassesAndSelectors,
   avatarFormSubmit,
-  avatarFormValidator
+  avatarFormValidator,
+  loadingMessage
 );
 
 const cardOffPopup = new PopupForConfirmation(
@@ -148,6 +152,8 @@ function avatarButtonClick() {
 }
 
 function avatarFormSubmit(avatarData) {
+  avatarPopup.showLoadingMessage();
+
   api.editUserAvatar(avatarData)
     .then(userData => {
       user = userData;
@@ -155,10 +161,15 @@ function avatarFormSubmit(avatarData) {
       avatarElement.src = user.avatar;
 
       avatarPopup.close();
-    });
+    })
+    .finally(() => {
+      avatarPopup.hideLoadingMessage();
+    })
 }
 
 function userInfoFormSubmit(profileData) {
+  userInfoPopup.showLoadingMessage();
+
   api.editUserInfo(profileData)
     .then(userData => {
       user = userData;
@@ -167,13 +178,21 @@ function userInfoFormSubmit(profileData) {
 
       userInfoPopup.close();
     })
+    .finally(() => {
+      userInfoPopup.hideLoadingMessage();
+    })
 }
 
 function newCardFormSubmit(cardData) {
+  newCardPopup.showLoadingMessage();
+
   api.addCard(cardData)
     .then(cardData => {
       cardsContainer.addElementToBegin(createCardElement(cardData, user));
       newCardPopup.close();
+    })
+    .finally(() => {
+      newCardPopup.hideLoadingMessage();
     })
 }
 
