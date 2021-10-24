@@ -60,7 +60,7 @@ api.getUser()
 
     userInfo.setInfo({
       name: userData.name,
-      status: userData.about
+      about: userData.about
     })
   });
 
@@ -151,9 +151,14 @@ function avatarFormSubmit(avatarData) {
 }
 
 function userInfoFormSubmit(profileData) {
-  userInfo.setInfo(profileData)
+  api.editUserInfo(profileData)
+    .then(userData => {
+      user = userData;
 
-  userInfoPopup.close();
+      userInfo.setInfo(user);
+
+      userInfoPopup.close();
+    })
 }
 
 function newCardFormSubmit(cardData) {

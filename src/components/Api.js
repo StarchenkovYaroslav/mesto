@@ -1,5 +1,3 @@
-import {initialCards} from "../utils/constants";
-
 export default class Api {
   constructor(settings) {
     this._baseUrl = settings.baseUrl;
@@ -9,6 +7,7 @@ export default class Api {
     this._initialCardsRequest = settings.initialCardsRequest;
     this._newCardRequest = settings.newCardRequest;
     this._cardLikeRequest = settings.cardLikeRequest;
+    this._userInfoRequest = settings.userInfoRequest;
   }
 
   getUser() {
@@ -17,6 +16,30 @@ export default class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return Promise.reject(`error: ${response.status}`);
+      })
+      .then(user => {
+        return user;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  editUserInfo(userInfo) {
+    return fetch(this._baseUrl + this._userInfoRequest, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userInfo)
     })
       .then(response => {
         if (response.ok) {

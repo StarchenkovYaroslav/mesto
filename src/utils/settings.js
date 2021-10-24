@@ -4,7 +4,8 @@ export const apiSettings = {
   userRequest: '/users/me',
   initialCardsRequest: '/cards',
   newCardRequest: '/cards',
-  cardLikeRequest: '/cards/likes/'
+  cardLikeRequest: '/cards/likes/',
+  userInfoRequest: '/users/me'
 }
 export const formClassesAndSelectors = {
   formSelector: '.form',
@@ -39,7 +40,7 @@ export const pictureClassesAndSelectors = {
 
 export const profileClassesAndSelectors = {
   nameSelector: '.profile__name',
-  statusSelector: '.profile__status'
+  aboutSelector: '.profile__about'
 }
 
 export const userCardTemplateSelector = '#user-card-template';
