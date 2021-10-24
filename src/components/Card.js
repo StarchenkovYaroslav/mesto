@@ -30,6 +30,10 @@ export default class Card {
     this._likeCounterElement = this._element.querySelector(this._likeCounterSelector);
   }
 
+  get id() {
+    return this._id;
+  }
+
   get link() {
     return this._link;
   }

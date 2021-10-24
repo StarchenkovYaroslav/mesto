@@ -8,6 +8,8 @@ export default class Api {
     this._newCardRequest = settings.newCardRequest;
     this._cardLikeRequest = settings.cardLikeRequest;
     this._userInfoRequest = settings.userInfoRequest;
+    this._userAvatarRequest = settings.userAvatarRequest;
+    this._cardOffRequest = settings.cardOffRequest;
   }
 
   getUser() {
@@ -32,14 +34,38 @@ export default class Api {
       })
   }
 
-  editUserInfo(userInfo) {
+  editUserInfo(userData) {
     return fetch(this._baseUrl + this._userInfoRequest, {
       method: 'PATCH',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userInfo)
+      body: JSON.stringify(userData)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return Promise.reject(`error: ${response.status}`);
+      })
+      .then(user => {
+        return user;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  editUserAvatar(avatarData) {
+    return fetch(this._baseUrl + this._userAvatarRequest, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(avatarData)
     })
       .then(response => {
         if (response.ok) {
@@ -86,6 +112,30 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(cardData)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return Promise.reject(`error: ${response.status}`);
+      })
+      .then(cardData => {
+        return cardData;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  deleteCard(card) {
+    console.log(this._baseUrl + this._cardOffRequest + card.id);
+    return fetch(this._baseUrl + this._cardOffRequest + card.id, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
     })
       .then(response => {
         if (response.ok) {

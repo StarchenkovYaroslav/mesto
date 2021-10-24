@@ -4,8 +4,10 @@ export const apiSettings = {
   userRequest: '/users/me',
   initialCardsRequest: '/cards',
   newCardRequest: '/cards',
+  cardOffRequest: '/cards/',
   cardLikeRequest: '/cards/likes/',
-  userInfoRequest: '/users/me'
+  userInfoRequest: '/users/me',
+  userAvatarRequest: '/users/me/avatar'
 }
 export const formClassesAndSelectors = {
   formSelector: '.form',

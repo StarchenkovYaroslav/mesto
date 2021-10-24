@@ -56,7 +56,7 @@ api.getUser()
   .then(userData => {
     user = userData;
 
-    avatarElement.src = userData.avatar;
+    avatarElement.src = user.avatar;
 
     userInfo.setInfo({
       name: userData.name,
@@ -135,9 +135,12 @@ function renderCard(cardData) {
 }
 
 function confirmCardDeletion(card) {
-  card.delete();
+  api.deleteCard(card)
+    .then(data => {
+      card.delete();
 
-  cardOffPopup.close();
+      cardOffPopup.close();
+    })
 }
 
 function avatarButtonClick() {
@@ -145,9 +148,14 @@ function avatarButtonClick() {
 }
 
 function avatarFormSubmit(avatarData) {
-  avatarElement.src = avatarData.imageUrl;
+  api.editUserAvatar(avatarData)
+    .then(userData => {
+      user = userData;
 
-  avatarPopup.close();
+      avatarElement.src = user.avatar;
+
+      avatarPopup.close();
+    });
 }
 
 function userInfoFormSubmit(profileData) {
@@ -211,10 +219,10 @@ function createCardElement(data, user) {
       data,
       {
         handleImageClick: cardImageClick,
-        handleLikeButtonClick: cardLikeButtonClick
+        handleLikeButtonClick: cardLikeButtonClick,
+        handleDeleteButtonClick: cardDeleteButtonClick
       },
       user,
-      cardDeleteButtonClick,
     ).getElement();
   } else {
     return new Card(
