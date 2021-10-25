@@ -46,58 +46,32 @@ export default class Card {
     return this._isLikedByUser;
   }
 
-  toggleLike(cardData) {
-    this._isLikedByUser = !this._isLikedByUser;
-
-    this._likes = cardData.likes;
-
-    this._updateLikeCounter();
-
-    this._toggleLikeButtonState();
-  }
-
-  _toggleLikeButtonState() {
-    if (this._isLikedByUser) {
-      this._likeButtonElement.classList.add(this._activeLikeButtonClass);
-    } else {
-      this._likeButtonElement.classList.remove(this._activeLikeButtonClass);
-    }
-  }
-
   getElement() {
     this._fillElement();
 
     return this._element;
   }
 
-  _checkLikeByUser() {
-    this._likes.forEach(user => {
-      if (user._id === this._user._id) {
-        this._isLikedByUser = true;
-      }
-    })
-  }
+  toggleLike(cardData) {
+    this._isLikedByUser = !this._isLikedByUser;
+    this._likes = cardData.likes;
 
-  _updateLikeCounter() {
-    this._likeCounter = this._likes.length;
-
-    this._likeCounterElement.textContent = this._likeCounter;
+    this._updateLikeCounter();
+    this._updateLikeButtonView();
   }
 
   _fillElement() {
     this._setElementsValues();
     this._setEventListeners();
+
+    this._updateLikeCounter();
+    this._updateLikeButtonView();
   }
 
   _setElementsValues() {
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._titleElement.textContent = this._name;
-    this._likeCounterElement.textContent = this._likeCounter;
-
-    if (this._isLikedByUser) {
-      this._likeButtonElement.classList.add(this._activeLikeButtonClass);;
-    }
   }
 
   _setEventListeners() {
@@ -107,6 +81,36 @@ export default class Card {
     this._likeButtonElement.addEventListener('click', () => {
       this._handleLikeButtonClick(this);
     });
+  }
+
+  _updateLikeCounter() {
+    this._likeCounter = this._likes.length;
+
+    this._likeCounterElement.textContent = this._likeCounter;
+  }
+
+  _updateLikeButtonView() {
+    if (this._isLikedByUser) {
+      this._paintLikeButton();
+    } else {
+      this._cleanLikeButton();
+    }
+  }
+
+  _paintLikeButton() {
+    this._likeButtonElement.classList.add(this._activeLikeButtonClass);
+  }
+
+  _cleanLikeButton() {
+    this._likeButtonElement.classList.remove(this._activeLikeButtonClass);
+  }
+
+  _checkLikeByUser() {
+    this._likes.forEach(user => {
+      if (user._id === this._user._id) {
+        this._isLikedByUser = true;
+      }
+    })
   }
 
   _getEmptyElement() {
