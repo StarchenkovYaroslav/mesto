@@ -254,16 +254,16 @@ function createCardElement(cardData, user) {
       },
       user,
     ).getElement();
-  } else {
-    return new Card(
-      cardClassesAndSelectors,
-      othersCardTemplateSelector,
-      cardData,
-      {
-        handleImageClick: cardImageClick,
-        handleLikeButtonClick: cardLikeButtonClick
-      },
-      user,
-    ).getElement();
   }
+
+  return new Card(
+    cardClassesAndSelectors,
+    othersCardTemplateSelector,
+    cardData,
+    {
+      handleImageClick: cardImageClick,
+      handleLikeButtonClick: cardLikeButtonClick
+    },
+    user,
+  ).getElement();
 }
