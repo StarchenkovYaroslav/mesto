@@ -61,7 +61,7 @@ api.getUser()
       about: userData.about
     })
   })
-  .catch((error) => {
+  .catch(() => {
     alert(errorMessage);
   });
 
@@ -71,7 +71,7 @@ api.getInitialCards()
   .then(initialCards => {
     cardsContainer.renderItems(initialCards);
   })
-  .catch((error) => {
+  .catch(() => {
     alert(errorMessage);
   });
 
@@ -176,10 +176,10 @@ function avatarFormSubmit(avatarData) {
     });
 }
 
-function userInfoFormSubmit(profileData) {
+function userInfoFormSubmit(userData) {
   userInfoPopup.showLoadingMessage();
 
-  api.editUserInfo(profileData)
+  api.editUserInfo(userData)
     .then(userData => {
       user = userData;
 
@@ -241,12 +241,12 @@ function newCardButtonClick() {
 
 
 // defining utility functions
-function createCardElement(data, user) {
-  if (data.owner._id === user._id) {
+function createCardElement(cardData, user) {
+  if (cardData.owner._id === user._id) {
     return new CardOfUser(
       cardClassesAndSelectors,
       userCardTemplateSelector,
-      data,
+      cardData,
       {
         handleImageClick: cardImageClick,
         handleLikeButtonClick: cardLikeButtonClick,
@@ -258,7 +258,7 @@ function createCardElement(data, user) {
     return new Card(
       cardClassesAndSelectors,
       othersCardTemplateSelector,
-      data,
+      cardData,
       {
         handleImageClick: cardImageClick,
         handleLikeButtonClick: cardLikeButtonClick
