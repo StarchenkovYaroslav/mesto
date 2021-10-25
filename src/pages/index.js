@@ -47,35 +47,6 @@ const userInfo = new UserInfo(profileClassesAndSelectors);
 const cardsContainer = new Section(renderCard, '.cards');
 
 
-// getting user from server
-let user;
-
-api.getUser()
-  .then(userData => {
-    user = userData;
-
-    avatarElement.src = user.avatar;
-
-    userInfo.setInfo({
-      name: userData.name,
-      about: userData.about
-    })
-  })
-  .catch(() => {
-    alert(errorMessage);
-  });
-
-
-// getting initial card from server
-api.getInitialCards()
-  .then(initialCards => {
-    cardsContainer.renderItems(initialCards);
-  })
-  .catch(() => {
-    alert(errorMessage);
-  });
-
-
 // creating validators
 const userInfoFormValidator = new FormValidator(formClassesAndSelectors, userInfoForm);
 const newCardFormValidator = new FormValidator(formClassesAndSelectors, newCardForm);
@@ -124,6 +95,35 @@ const cardImagePopup = new PopupWithImage(
 );
 
 
+// getting user from server
+let user;
+
+api.getUser()
+  .then(userData => {
+    user = userData;
+
+    avatarElement.src = user.avatar;
+
+    userInfo.setInfo({
+      name: user.name,
+      about: user.about
+    })
+  })
+  .catch(() => {
+    alert(errorMessage);
+  });
+
+
+// getting initial cards from server
+api.getInitialCards()
+  .then(initialCards => {
+    cardsContainer.renderItems(initialCards);
+  })
+  .catch(() => {
+    alert(errorMessage);
+  });
+
+
 // enabling forms validation
 userInfoFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
@@ -136,7 +136,7 @@ newCardButton.addEventListener('click', newCardButtonClick);
 avatarButton.addEventListener('click', avatarButtonClick);
 
 
-// defining handlers
+// defining callbacks
 function renderCard(cardData) {
   cardsContainer.addElementToEnd(createCardElement(cardData, user))
 }
@@ -151,10 +151,6 @@ function confirmCardDeletion(card) {
     .catch(() => {
       alert(errorMessage);
     });
-}
-
-function avatarButtonClick() {
-  avatarPopup.open();
 }
 
 function avatarFormSubmit(avatarData) {
@@ -227,6 +223,10 @@ function cardLikeButtonClick(card) {
     .catch(() => {
       alert(errorMessage);
     });
+}
+
+function avatarButtonClick() {
+  avatarPopup.open();
 }
 
 function userInfoButtonClick() {

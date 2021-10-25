@@ -56,16 +56,16 @@ export default class Card {
     this._isLikedByUser = !this._isLikedByUser;
     this._likes = cardData.likes;
 
-    this._updateLikeCounter();
     this._updateLikeButtonView();
+    this._updateLikeCounter();
   }
 
   _fillElement() {
     this._setElementsValues();
     this._setEventListeners();
 
-    this._updateLikeCounter();
     this._updateLikeButtonView();
+    this._updateLikeCounter();
   }
 
   _setElementsValues() {
