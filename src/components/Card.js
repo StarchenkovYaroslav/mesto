@@ -16,7 +16,7 @@ export default class Card {
 
     this._user = user;
 
-    this._isLiked = false;
+    this._isLikedByUser = false;
     this._checkLikeByUser();
     this._likeCounter = this._likes.length;
 
@@ -42,26 +42,26 @@ export default class Card {
     return this._name;
   }
 
-  get isLiked() {
-    return this._isLiked;
+  get isLikedByUser() {
+    return this._isLikedByUser;
   }
 
-  like(card) {
-    this._isLiked = true;
+  toggleLike(cardData) {
+    this._isLikedByUser = !this._isLikedByUser;
 
-    this._likes = card.likes;
+    this._likes = cardData.likes;
+
     this._updateLikeCounter();
 
-    this._likeButtonElement.classList.add(this._activeLikeButtonClass);
+    this._toggleLikeButtonState();
   }
 
-  dislike(card) {
-    this._isLiked = false;
-
-    this._likes = card.likes;
-    this._updateLikeCounter();
-
-    this._likeButtonElement.classList.remove(this._activeLikeButtonClass);
+  _toggleLikeButtonState() {
+    if (this._isLikedByUser) {
+      this._likeButtonElement.classList.add(this._activeLikeButtonClass);
+    } else {
+      this._likeButtonElement.classList.remove(this._activeLikeButtonClass);
+    }
   }
 
   getElement() {
@@ -73,7 +73,7 @@ export default class Card {
   _checkLikeByUser() {
     this._likes.forEach(user => {
       if (user._id === this._user._id) {
-        this._isLiked = true;
+        this._isLikedByUser = true;
       }
     })
   }
@@ -95,7 +95,7 @@ export default class Card {
     this._titleElement.textContent = this._name;
     this._likeCounterElement.textContent = this._likeCounter;
 
-    if (this._isLiked) {
+    if (this._isLikedByUser) {
       this._likeButtonElement.classList.add(this._activeLikeButtonClass);;
     }
   }

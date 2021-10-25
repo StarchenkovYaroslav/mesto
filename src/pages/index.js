@@ -205,17 +205,10 @@ function cardDeleteButtonClick(card) {
 }
 
 function cardLikeButtonClick(card) {
-  if (!card.isLiked) {
-    api.likeCard(card)
-      .then(cardData => {
-        card.like(cardData);
-      })
-  } else {
-    api.dislikeCard(card)
-      .then(cardData => {
-        card.dislike(cardData);
-      })
-  }
+  api.toggleCardLike(card)
+    .then(cardData => {
+      card.toggleLike(cardData);
+    });
 }
 
 function userInfoButtonClick() {

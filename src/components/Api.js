@@ -151,32 +151,11 @@ export default class Api {
       })
   }
 
-  likeCard(cardData) {
-    return fetch(this._baseUrl + this._cardLikeRequest + cardData._id, {
-      method: 'PUT',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
+  toggleCardLike(card) {
+    const method = card.isLikedByUser ? 'DELETE' : 'PUT';
 
-        return Promise.reject(`error: ${response.status}`);
-      })
-      .then(cardData => {
-        return cardData;
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
-  dislikeCard(cardData) {
-    return fetch(this._baseUrl + this._cardLikeRequest + cardData._id, {
-      method: 'DELETE',
+    return fetch(this._baseUrl + this._cardLikeRequest + card.id, {
+      method: method,
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
