@@ -25,13 +25,7 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(user => {
-        return user;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 
   editUserInfo(userData) {
@@ -49,13 +43,7 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(user => {
-        return user;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 
   editUserAvatar(avatarData) {
@@ -73,13 +61,7 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(user => {
-        return user;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 
   getInitialCards() {
@@ -95,13 +77,7 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(initialCards => {
-        return initialCards;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 
   addCard(cardData) {
@@ -119,13 +95,7 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(cardData => {
-        return cardData;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 
   deleteCard(card) {
@@ -142,13 +112,7 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(cardData => {
-        return cardData;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 
   toggleCardLike(card) {
@@ -167,12 +131,6 @@ export default class Api {
         }
 
         return Promise.reject(`error: ${response.status}`);
-      })
-      .then(cardData => {
-        return cardData;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      });
   }
 }

@@ -12,7 +12,8 @@ import {
   profileClassesAndSelectors,
   userCardTemplateSelector,
   othersCardTemplateSelector,
-  loadingMessage
+  loadingMessage,
+  errorMessage
 } from '../utils/settings.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -63,6 +64,9 @@ api.getUser()
       name: userData.name,
       about: userData.about
     })
+  })
+  .catch((error) => {
+    alert(errorMessage);
   });
 
 
@@ -71,6 +75,9 @@ api.getInitialCards()
   .then(initialCards => {
     cardsContainer.renderItems(initialCards);
   })
+  .catch((error) => {
+    alert(errorMessage);
+  });
 
 
 // creating validators
@@ -140,11 +147,14 @@ function renderCard(cardData) {
 
 function confirmCardDeletion(card) {
   api.deleteCard(card)
-    .then(data => {
+    .then(() => {
       card.delete();
 
       cardOffPopup.close();
     })
+    .catch(() => {
+      alert(errorMessage);
+    });
 }
 
 function avatarButtonClick() {
@@ -162,9 +172,12 @@ function avatarFormSubmit(avatarData) {
 
       avatarPopup.close();
     })
+    .catch(() => {
+      alert(errorMessage);
+    })
     .finally(() => {
       avatarPopup.hideLoadingMessage();
-    })
+    });
 }
 
 function userInfoFormSubmit(profileData) {
@@ -178,9 +191,12 @@ function userInfoFormSubmit(profileData) {
 
       userInfoPopup.close();
     })
+    .catch(() => {
+      alert(errorMessage);
+    })
     .finally(() => {
       userInfoPopup.hideLoadingMessage();
-    })
+    });
 }
 
 function newCardFormSubmit(cardData) {
@@ -191,9 +207,12 @@ function newCardFormSubmit(cardData) {
       cardsContainer.addElementToBegin(createCardElement(cardData, user));
       newCardPopup.close();
     })
+    .catch(() => {
+      alert(errorMessage);
+    })
     .finally(() => {
       newCardPopup.hideLoadingMessage();
-    })
+    });
 }
 
 function cardImageClick(card) {
@@ -208,6 +227,9 @@ function cardLikeButtonClick(card) {
   api.toggleCardLike(card)
     .then(cardData => {
       card.toggleLike(cardData);
+    })
+    .catch(() => {
+      alert(errorMessage);
     });
 }
 

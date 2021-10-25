@@ -50,3 +50,5 @@ export const userCardTemplateSelector = '#user-card-template';
 export const othersCardTemplateSelector = '#others-card-template';
 
 export const loadingMessage = 'Сохранение...';
+
+export const errorMessage = 'Что-то пошло не так...';
