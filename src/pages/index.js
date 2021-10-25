@@ -1,9 +1,6 @@
 import './index.css';
 
 import {
-  initialCards
-} from '../utils/constants.js';
-import {
   apiSettings,
   formClassesAndSelectors,
   cardClassesAndSelectors,
@@ -24,7 +21,6 @@ import FormValidator from '../components/FormValidator.js';
 import CardOfUser from '../components/CardOfUser.js';
 import PopupForConfirmation from '../components/PopupForConfirmation.js';
 import Api from '../components/Api.js';
-import * as url from "url";
 
 
 // getting elements from DOM
