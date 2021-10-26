@@ -100,7 +100,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
     cardsContainer.renderItems(initialCards);
   })
   .catch(() => {
-    alert(errorMessage);
+    showServerError();
   });
 
 
@@ -129,7 +129,7 @@ function confirmCardDeletion(card) {
       cardOffPopup.close();
     })
     .catch(() => {
-      alert(errorMessage);
+      showServerError();
     });
 }
 
@@ -143,7 +143,7 @@ function avatarFormSubmit(avatarData) {
       avatarPopup.close();
     })
     .catch(() => {
-      alert(errorMessage);
+      showServerError();
     })
     .finally(() => {
       avatarPopup.hideLoadingMessage();
@@ -160,7 +160,7 @@ function userInfoFormSubmit(userData) {
       userInfoPopup.close();
     })
     .catch(() => {
-      alert(errorMessage);
+      showServerError();
     })
     .finally(() => {
       userInfoPopup.hideLoadingMessage();
@@ -176,7 +176,7 @@ function newCardFormSubmit(cardData) {
       newCardPopup.close();
     })
     .catch(() => {
-      alert(errorMessage);
+      showServerError();
     })
     .finally(() => {
       newCardPopup.hideLoadingMessage();
@@ -196,9 +196,7 @@ function cardLikeButtonClick(card) {
     .then(cardData => {
       card.toggleLike(cardData);
     })
-    .catch(() => {
-      alert(errorMessage);
-    });
+    .catch(showServerError);
 }
 
 function avatarButtonClick() {
@@ -228,4 +226,8 @@ function createCardElement(cardData, userData) {
     },
     userData,
   ).getElement();
+}
+
+function showServerError() {
+  alert(errorMessage);
 }
