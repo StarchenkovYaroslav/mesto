@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(settings, data, handlers, user) {
+  constructor(settings, data, handlers, userId) {
     this._templateSelector = settings.templateSelector;
 
     this._elementSelector = settings.elementSelector;
@@ -15,9 +15,9 @@ export default class Card {
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
-    this._owner = data.owner;
+    this._ownerId = data.owner._id;
 
-    this._user = user;
+    this._userId = userId;
 
     this._isLikedByUser = false;
     this._checkLikeByUser();
@@ -122,7 +122,7 @@ export default class Card {
 
   _checkLikeByUser() {
     this._likes.forEach(user => {
-      if (user._id === this._user._id) {
+      if (user._id === this._userId) {
         this._isLikedByUser = true;
       }
     })
@@ -135,7 +135,7 @@ export default class Card {
   }
 
   _isMadeByUser() {
-    return this._owner._id === this._user._id;
+    return this._ownerId === this._userId;
   }
 
   _activateDeleteButton() {

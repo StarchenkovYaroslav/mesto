@@ -116,7 +116,7 @@ avatarButton.addEventListener('click', avatarButtonClick);
 
 // defining callbacks
 function renderCard(cardData) {
-  cardsContainer.addElementToEnd(createCardElement(cardData, userInfo.getInfo()))
+  cardsContainer.addElementToEnd(createCardElement(cardData, userInfo.id))
 }
 
 function confirmCardDeletion(card) {
@@ -170,7 +170,7 @@ function newCardFormSubmit(cardData) {
 
   api.addCard(cardData)
     .then(cardData => {
-      cardsContainer.addElementToBegin(createCardElement(cardData, userInfo.getInfo()));
+      cardsContainer.addElementToBegin(createCardElement(cardData, userInfo.id));
       newCardPopup.close();
     })
     .catch(() => {
@@ -213,7 +213,7 @@ function newCardButtonClick() {
 
 
 // defining utility functions
-function createCardElement(cardData, userData) {
+function createCardElement(cardData, userId) {
   return new Card(
     cardClassesAndSelectors,
     cardData,
@@ -222,7 +222,7 @@ function createCardElement(cardData, userData) {
       handleLikeButtonClick: cardLikeButtonClick,
       handleDeleteButtonClick: cardDeleteButtonClick
     },
-    userData,
+    userId,
   ).getElement();
 }
 
