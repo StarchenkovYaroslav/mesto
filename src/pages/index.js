@@ -7,8 +7,6 @@ import {
   popupClassesAndSelectors,
   pictureClassesAndSelectors,
   profileClassesAndSelectors,
-  userCardTemplateSelector,
-  othersCardTemplateSelector,
   loadingMessage,
   errorMessage
 } from '../utils/settings.js';
@@ -18,7 +16,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
-import CardOfUser from '../components/CardOfUser.js';
 import PopupForConfirmation from '../components/PopupForConfirmation.js';
 import Api from '../components/Api.js';
 
@@ -242,27 +239,13 @@ function newCardButtonClick() {
 
 // defining utility functions
 function createCardElement(cardData, user) {
-  if (cardData.owner._id === user._id) {
-    return new CardOfUser(
-      cardClassesAndSelectors,
-      userCardTemplateSelector,
-      cardData,
-      {
-        handleImageClick: cardImageClick,
-        handleLikeButtonClick: cardLikeButtonClick,
-        handleDeleteButtonClick: cardDeleteButtonClick
-      },
-      user,
-    ).getElement();
-  }
-
   return new Card(
     cardClassesAndSelectors,
-    othersCardTemplateSelector,
     cardData,
     {
       handleImageClick: cardImageClick,
-      handleLikeButtonClick: cardLikeButtonClick
+      handleLikeButtonClick: cardLikeButtonClick,
+      handleDeleteButtonClick: cardDeleteButtonClick
     },
     user,
   ).getElement();

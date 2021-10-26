@@ -20,13 +20,15 @@ export const formClassesAndSelectors = {
 };
 
 export const cardClassesAndSelectors = {
+  templateSelector: '#card-template',
   elementSelector: '.card',
   imageSelector: '.card__image',
   titleSelector: '.card__title',
   likeButtonSelector: '.card__like-button',
   likeCounterSelector: '.card__like-counter',
   deleteButtonSelector: '.card__delete-button',
-  activeLikeButtonClass: 'card__like-button_active'
+  activeLikeButtonClass: 'card__like-button_active',
+  activeDeleteButtonClass: 'card__delete-button_active'
 };
 
 export const popupClassesAndSelectors = {
@@ -44,10 +46,6 @@ export const profileClassesAndSelectors = {
   nameSelector: '.profile__name',
   aboutSelector: '.profile__about'
 }
-
-export const userCardTemplateSelector = '#user-card-template';
-
-export const othersCardTemplateSelector = '#others-card-template';
 
 export const loadingMessage = 'Сохранение...';
 

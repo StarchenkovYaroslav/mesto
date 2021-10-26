@@ -1,6 +1,6 @@
 export default class Card {
-  constructor(settings, templateSelector, data, handlers, user) {
-    this._templateSelector = templateSelector;
+  constructor(settings, data, handlers, user) {
+    this._templateSelector = settings.templateSelector;
 
     this._elementSelector = settings.elementSelector;
     this._imageSelector = settings.imageSelector;
@@ -8,11 +8,14 @@ export default class Card {
     this._likeButtonSelector = settings.likeButtonSelector;
     this._likeCounterSelector = settings.likeCounterSelector;
     this._activeLikeButtonClass = settings.activeLikeButtonClass;
+    this._deleteButtonSelector = settings.deleteButtonSelector;
+    this._activeDeleteButtonClass = settings.activeDeleteButtonClass;
 
     this._id = data._id;
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
+    this._owner = data.owner;
 
     this._user = user;
 
@@ -22,12 +25,16 @@ export default class Card {
 
     this._handleImageClick = handlers.handleImageClick;
     this._handleLikeButtonClick = handlers.handleLikeButtonClick;
+    this._handleDeleteButtonClick = handlers.handleDeleteButtonClick;
 
     this._element = this._getEmptyElement();
     this._imageElement = this._element.querySelector(this._imageSelector);
     this._titleElement = this._element.querySelector(this._titleSelector);
     this._likeButtonElement = this._element.querySelector(this._likeButtonSelector);
     this._likeCounterElement = this._element.querySelector(this._likeCounterSelector);
+    this._deleteButtonElement = this._element.querySelector(this._deleteButtonSelector);
+
+    this._fillElement();
   }
 
   get id() {
@@ -47,9 +54,12 @@ export default class Card {
   }
 
   getElement() {
-    this._fillElement();
-
     return this._element;
+  }
+
+  delete() {
+    this._element.remove();
+    this._element = null;
   }
 
   toggleLike(cardData) {
@@ -66,6 +76,8 @@ export default class Card {
 
     this._updateLikeButtonView();
     this._updateLikeCounter();
+
+    this._checkMadeByUser();
   }
 
   _setElementsValues() {
@@ -80,6 +92,9 @@ export default class Card {
     });
     this._likeButtonElement.addEventListener('click', () => {
       this._handleLikeButtonClick(this);
+    });
+    this._deleteButtonElement.addEventListener('click', () => {
+      this._handleDeleteButtonClick(this);
     });
   }
 
@@ -111,6 +126,21 @@ export default class Card {
         this._isLikedByUser = true;
       }
     })
+  }
+
+  _checkMadeByUser() {
+    if (this._isMadeByUser()) {
+      this._activateDeleteButton();
+    }
+  }
+
+  _isMadeByUser() {
+    return this._owner._id === this._user._id;
+  }
+
+  _activateDeleteButton() {
+    this._deleteButtonElement.removeAttribute('disabled');
+    this._deleteButtonElement.classList.add(this._activeDeleteButtonClass);
   }
 
   _getEmptyElement() {
