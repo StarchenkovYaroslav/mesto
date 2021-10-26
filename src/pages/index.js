@@ -29,8 +29,6 @@ const userInfoForm = document.querySelector('.form_action_edit-profile');
 const newCardForm = document.querySelector('.form_action_add-card');
 const avatarForm = document.querySelector('.form_action_change-avatar');
 
-const avatarElement = document.querySelector('.profile__avatar');
-
 
 // creating api
 const api = new Api(apiSettings);
