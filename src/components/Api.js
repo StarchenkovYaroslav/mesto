@@ -19,13 +19,7 @@ export default class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`error: ${response.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   editUserInfo(userData) {
@@ -37,13 +31,7 @@ export default class Api {
       },
       body: JSON.stringify(userData)
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`error: ${response.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   editUserAvatar(avatarData) {
@@ -55,13 +43,7 @@ export default class Api {
       },
       body: JSON.stringify(avatarData)
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`error: ${response.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   getInitialCards() {
@@ -71,13 +53,7 @@ export default class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`error: ${response.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   addCard(cardData) {
@@ -89,13 +65,7 @@ export default class Api {
       },
       body: JSON.stringify(cardData)
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`error: ${response.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   deleteCard(card) {
@@ -106,13 +76,7 @@ export default class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        return Promise.reject(`error: ${response.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   toggleCardLike(card) {
@@ -125,12 +89,14 @@ export default class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
+      .then(this._checkResponse);
+  }
 
-        return Promise.reject(`error: ${response.status}`);
-      });
+  _checkResponse(response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return Promise.reject(response.status);
   }
 }
