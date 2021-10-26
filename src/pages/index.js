@@ -93,18 +93,9 @@ const cardImagePopup = new PopupWithImage(
 
 
 // getting user from server
-let user;
-
 api.getUser()
   .then(userData => {
-    user = userData;
-
-    avatarElement.src = user.avatar;
-
-    userInfo.setInfo({
-      name: user.name,
-      about: user.about
-    })
+    userInfo.setInfo(userData);
   })
   .catch(() => {
     alert(errorMessage);
@@ -135,7 +126,7 @@ avatarButton.addEventListener('click', avatarButtonClick);
 
 // defining callbacks
 function renderCard(cardData) {
-  cardsContainer.addElementToEnd(createCardElement(cardData, user))
+  cardsContainer.addElementToEnd(createCardElement(cardData, userInfo.getInfo()))
 }
 
 function confirmCardDeletion(card) {
@@ -155,9 +146,7 @@ function avatarFormSubmit(avatarData) {
 
   api.editUserAvatar(avatarData)
     .then(userData => {
-      user = userData;
-
-      avatarElement.src = user.avatar;
+      userInfo.setInfo(userData);
 
       avatarPopup.close();
     })
@@ -174,9 +163,7 @@ function userInfoFormSubmit(userData) {
 
   api.editUserInfo(userData)
     .then(userData => {
-      user = userData;
-
-      userInfo.setInfo(user);
+      userInfo.setInfo(userData);
 
       userInfoPopup.close();
     })
@@ -193,7 +180,7 @@ function newCardFormSubmit(cardData) {
 
   api.addCard(cardData)
     .then(cardData => {
-      cardsContainer.addElementToBegin(createCardElement(cardData, user));
+      cardsContainer.addElementToBegin(createCardElement(cardData, userInfo.getInfo()));
       newCardPopup.close();
     })
     .catch(() => {
@@ -238,7 +225,7 @@ function newCardButtonClick() {
 
 
 // defining utility functions
-function createCardElement(cardData, user) {
+function createCardElement(cardData, userData) {
   return new Card(
     cardClassesAndSelectors,
     cardData,
@@ -247,6 +234,6 @@ function createCardElement(cardData, user) {
       handleLikeButtonClick: cardLikeButtonClick,
       handleDeleteButtonClick: cardDeleteButtonClick
     },
-    user,
+    userData,
   ).getElement();
 }

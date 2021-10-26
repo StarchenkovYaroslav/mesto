@@ -44,7 +44,8 @@ export const pictureClassesAndSelectors = {
 
 export const profileClassesAndSelectors = {
   nameSelector: '.profile__name',
-  aboutSelector: '.profile__about'
+  aboutSelector: '.profile__about',
+  avatarSelector: '.profile__avatar'
 }
 
 export const loadingMessage = 'Сохранение...';
