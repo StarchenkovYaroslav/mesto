@@ -92,19 +92,11 @@ const cardImagePopup = new PopupWithImage(
 );
 
 
-// getting user from server
-api.getUser()
-  .then(userData => {
+// getting user and initial cards form server
+Promise.all([api.getUser(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
     userInfo.setInfo(userData);
-  })
-  .catch(() => {
-    alert(errorMessage);
-  });
 
-
-// getting initial cards from server
-api.getInitialCards()
-  .then(initialCards => {
     cardsContainer.renderItems(initialCards);
   })
   .catch(() => {
