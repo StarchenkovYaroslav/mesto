@@ -1,4 +1,6 @@
 export default class Card {
+  _isMadeByUser;
+  _isLikedByUser;
   constructor(settings, data, handlers, userId) {
     this._templateSelector = settings.templateSelector;
 
@@ -17,15 +19,13 @@ export default class Card {
     this._likes = data.likes;
     this._ownerId = data.owner._id;
 
-    this._userId = userId;
-
-    this._isLikedByUser = false;
-    this._checkLikeByUser();
-    this._likeCounter = this._likes.length;
-
     this._handleImageClick = handlers.handleImageClick;
     this._handleLikeButtonClick = handlers.handleLikeButtonClick;
     this._handleDeleteButtonClick = handlers.handleDeleteButtonClick;
+
+    this._userId = userId;
+
+    this._likeCounter = this._likes.length;
 
     this._element = this._getEmptyElement();
     this._imageElement = this._element.querySelector(this._imageSelector);
@@ -33,6 +33,9 @@ export default class Card {
     this._likeButtonElement = this._element.querySelector(this._likeButtonSelector);
     this._likeCounterElement = this._element.querySelector(this._likeCounterSelector);
     this._deleteButtonElement = this._element.querySelector(this._deleteButtonSelector);
+
+    this._determineMadeByUser();
+    this._determineLikedByUser();
 
     this._fillElement();
   }
@@ -66,21 +69,21 @@ export default class Card {
     this._isLikedByUser = !this._isLikedByUser;
     this._likes = cardData.likes;
 
-    this._updateLikeButtonView();
+    this._checkLikedByUser();
     this._updateLikeCounter();
   }
 
   _fillElement() {
-    this._setElementsValues();
+    this._setElementValues();
     this._setEventListeners();
 
-    this._updateLikeButtonView();
-    this._updateLikeCounter();
-
     this._checkMadeByUser();
+    this._checkLikedByUser();
+
+    this._updateLikeCounter();
   }
 
-  _setElementsValues() {
+  _setElementValues() {
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._titleElement.textContent = this._name;
@@ -104,12 +107,34 @@ export default class Card {
     this._likeCounterElement.textContent = this._likeCounter;
   }
 
-  _updateLikeButtonView() {
+  _checkMadeByUser() {
+    if (this._isMadeByUser) {
+      this._activateDeleteButton();
+    } else {
+      this._deactivateDeleteButton();
+    }
+  }
+
+  _checkLikedByUser() {
     if (this._isLikedByUser) {
       this._paintLikeButton();
     } else {
       this._cleanLikeButton();
     }
+  }
+
+  _determineMadeByUser() {
+    this._isMadeByUser = this._ownerId === this._userId;
+  }
+
+  _determineLikedByUser() {
+    this._isLikedByUser = false;
+
+    this._likes.forEach(user => {
+      if (user._id === this._userId) {
+        this._isLikedByUser = true;
+      }
+    })
   }
 
   _paintLikeButton() {
@@ -120,27 +145,14 @@ export default class Card {
     this._likeButtonElement.classList.remove(this._activeLikeButtonClass);
   }
 
-  _checkLikeByUser() {
-    this._likes.forEach(user => {
-      if (user._id === this._userId) {
-        this._isLikedByUser = true;
-      }
-    })
-  }
-
-  _checkMadeByUser() {
-    if (this._isMadeByUser()) {
-      this._activateDeleteButton();
-    }
-  }
-
-  _isMadeByUser() {
-    return this._ownerId === this._userId;
-  }
-
   _activateDeleteButton() {
     this._deleteButtonElement.removeAttribute('disabled');
     this._deleteButtonElement.classList.add(this._activeDeleteButtonClass);
+  }
+
+  _deactivateDeleteButton() {
+    this._deleteButtonElement.setAttribute('disabled', '');
+    this._deleteButtonElement.classList.remove(this._activeDeleteButtonClass);
   }
 
   _getEmptyElement() {
