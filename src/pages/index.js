@@ -16,7 +16,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
-import PopupForConfirmation from '../components/PopupForConfirmation.js';
+import PopupToConfirm from '../components/PopupToConfirm.js';
 import Api from '../components/Api.js';
 
 
@@ -76,7 +76,7 @@ const avatarPopup = new PopupWithForm(
   loadingMessage
 );
 
-const cardOffPopup = new PopupForConfirmation(
+const cardOffPopup = new PopupToConfirm(
   popupClassesAndSelectors,
   '.popup_content_confirm-delete-card-form',
   formClassesAndSelectors,
@@ -116,7 +116,7 @@ avatarButton.addEventListener('click', avatarButtonClick);
 
 // defining callbacks
 function renderCard(cardData) {
-  cardsContainer.addElementToEnd(createCardElement(cardData, userInfo.id))
+  cardsContainer.addElementToEnd(createCardElement(cardData, userInfo.getInfo()))
 }
 
 function confirmCardDeletion(card) {
@@ -170,7 +170,7 @@ function newCardFormSubmit(cardData) {
 
   api.addCard(cardData)
     .then(cardData => {
-      cardsContainer.addElementToBegin(createCardElement(cardData, userInfo.id));
+      cardsContainer.addElementToBegin(createCardElement(cardData, userInfo.getInfo()));
       newCardPopup.close();
     })
     .catch(() => {
@@ -213,7 +213,7 @@ function newCardButtonClick() {
 
 
 // defining utility functions
-function createCardElement(cardData, userId) {
+function createCardElement(cardData, userData) {
   return new Card(
     cardClassesAndSelectors,
     cardData,
@@ -222,7 +222,7 @@ function createCardElement(cardData, userId) {
       handleLikeButtonClick: cardLikeButtonClick,
       handleDeleteButtonClick: cardDeleteButtonClick
     },
-    userId,
+    userData,
   ).getElement();
 }
 

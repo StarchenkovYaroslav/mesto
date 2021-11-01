@@ -1,7 +1,7 @@
 export default class Card {
   _isMadeByUser;
   _isLikedByUser;
-  constructor(settings, data, handlers, userId) {
+  constructor(settings, data, handlers, userData) {
     this._templateSelector = settings.templateSelector;
 
     this._elementSelector = settings.elementSelector;
@@ -23,7 +23,7 @@ export default class Card {
     this._handleLikeButtonClick = handlers.handleLikeButtonClick;
     this._handleDeleteButtonClick = handlers.handleDeleteButtonClick;
 
-    this._userId = userId;
+    this._userId = userData._id;
 
     this._likeCounter = this._likes.length;
 

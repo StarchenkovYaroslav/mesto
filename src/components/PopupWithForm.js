@@ -37,6 +37,13 @@ export default class PopupWithForm extends Popup {
     this._formValidator.resetValidation();
   }
 
+  showLoadingMessage() {
+    this._formSubmitButton.textContent = this._loadingMessage;
+  }
+
+  hideLoadingMessage() {
+    this._formSubmitButton.textContent = this._fomrSubmitButtonText;
+  }
 
   _setEventListeners() {
     super._setEventListeners();
@@ -59,13 +66,5 @@ export default class PopupWithForm extends Popup {
   _clearInputValues() {
     this._form.reset();
     this._formValidator.resetValidation();
-  }
-
-  showLoadingMessage() {
-    this._formSubmitButton.textContent = this._loadingMessage;
-  }
-
-  hideLoadingMessage() {
-    this._formSubmitButton.textContent = this._fomrSubmitButtonText;
   }
 }

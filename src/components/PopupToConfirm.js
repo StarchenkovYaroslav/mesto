@@ -1,6 +1,6 @@
 import Popup from './Popup.js';
 
-export default class PopupForConfirmation extends Popup {
+export default class PopupToConfirm extends Popup {
   _objectToHandle;
 
   constructor(popupSettings, elementSelector, formSettings, handleConfirmation) {
