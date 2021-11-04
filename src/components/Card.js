@@ -1,6 +1,7 @@
 export default class Card {
   _isMadeByUser;
   _isLikedByUser;
+  _likeCounter;
   constructor(settings, data, handlers, userData) {
     this._templateSelector = settings.templateSelector;
 
@@ -25,8 +26,6 @@ export default class Card {
 
     this._userId = userData._id;
 
-    this._likeCounter = this._likes.length;
-
     this._element = this._getEmptyElement();
     this._imageElement = this._element.querySelector(this._imageSelector);
     this._titleElement = this._element.querySelector(this._titleSelector);
@@ -36,6 +35,7 @@ export default class Card {
 
     this._determineMadeByUser();
     this._determineLikedByUser();
+    this._countLikes();
 
     this._fillElement();
   }
@@ -79,14 +79,13 @@ export default class Card {
 
     this._checkMadeByUser();
     this._checkLikedByUser();
-
-    this._updateLikeCounter();
   }
 
   _setElementValues() {
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._titleElement.textContent = this._name;
+    this._setLikeCounterElementValue();
   }
 
   _setEventListeners() {
@@ -102,8 +101,16 @@ export default class Card {
   }
 
   _updateLikeCounter() {
-    this._likeCounter = this._likes.length;
+    this._countLikes();
 
+    this._setLikeCounterElementValue();
+  }
+
+  _countLikes() {
+    this._likeCounter = this._likes.length;
+  }
+
+  _setLikeCounterElementValue() {
     this._likeCounterElement.textContent = this._likeCounter;
   }
 
@@ -128,13 +135,7 @@ export default class Card {
   }
 
   _determineLikedByUser() {
-    this._isLikedByUser = false;
-
-    this._likes.forEach(user => {
-      if (user._id === this._userId) {
-        this._isLikedByUser = true;
-      }
-    })
+    this._isLikedByUser = this._likes.some(user => user._id === this._userId);
   }
 
   _paintLikeButton() {
