@@ -16,3 +16,7 @@
 ## Ссылка на сайт
 
 https://starchenkovyaroslav.github.io/mesto/
+
+## Статус проекта
+
+Завершен
